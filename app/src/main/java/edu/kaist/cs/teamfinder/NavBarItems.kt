@@ -1,12 +1,10 @@
 package edu.kaist.cs.teamfinder
 
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
 import edu.kaist.cs.teamfinder.navbariconpack.Add
 import edu.kaist.cs.teamfinder.navbariconpack.Chat
 import edu.kaist.cs.teamfinder.navbariconpack.Connection
 import edu.kaist.cs.teamfinder.navbariconpack.Home
+import edu.kaist.cs.teamfinder.navbariconpack.NavBarIconPack
 import edu.kaist.cs.teamfinder.navbariconpack.Save
 
 object NavBarItems {
@@ -38,9 +36,4 @@ object NavBarItems {
             icon = NavBarIconPack.Save,
         ),
     )
-}
-
-@Composable
-fun xmlToImageVector(id: Int): ImageVector {
-    return ImageVector.vectorResource(id)
 }

@@ -9,9 +9,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import edu.kaist.cs.teamfinder.NavBarIconPack
 
-public val NavBarIconPack.Connection: ImageVector
+val NavBarIconPack.Connection: ImageVector
     get() {
         if (_connection != null) {
             return _connection!!

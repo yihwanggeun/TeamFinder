@@ -1,5 +1,7 @@
 package edu.kaist.cs.teamfinder.navbariconpack
 
+import androidx.compose.foundation.Image
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
 import androidx.compose.ui.graphics.SolidColor
@@ -8,8 +10,8 @@ import androidx.compose.ui.graphics.StrokeJoin.Companion.Miter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import edu.kaist.cs.teamfinder.NavBarIconPack
 
 val NavBarIconPack.Save: ImageVector
     get() {
@@ -41,3 +43,9 @@ val NavBarIconPack.Save: ImageVector
     }
 
 private var _save: ImageVector? = null
+
+@Preview
+@Composable
+fun PreviewSaveIcon() {
+    Image(imageVector = NavBarIconPack.Chat, contentDescription = "")
+}

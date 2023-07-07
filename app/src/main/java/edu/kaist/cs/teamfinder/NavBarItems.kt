@@ -1,11 +1,13 @@
 package edu.kaist.cs.teamfinder
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
-import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.MailOutline
-import androidx.compose.material.icons.rounded.Send
-import androidx.compose.material.icons.rounded.Star
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
+import edu.kaist.cs.teamfinder.navbariconpack.Add
+import edu.kaist.cs.teamfinder.navbariconpack.Chat
+import edu.kaist.cs.teamfinder.navbariconpack.Connection
+import edu.kaist.cs.teamfinder.navbariconpack.Home
+import edu.kaist.cs.teamfinder.navbariconpack.Save
 
 object NavBarItems {
 
@@ -13,27 +15,32 @@ object NavBarItems {
         NavBarItem(
             name = "Home",
             route = "home",
-            icon = Icons.Rounded.Home,
+            icon = NavBarIconPack.Home
         ),
         NavBarItem(
             name = "Posting",
             route = "posting",
-            icon = Icons.Rounded.MailOutline,
+            icon = NavBarIconPack.Connection,
         ),
         NavBarItem(
             name = "Add",
             route = "add",
-            icon = Icons.Rounded.Add,
+            icon = NavBarIconPack.Add,
         ),
         NavBarItem(
             name = "Chat",
             route = "chat",
-            icon = Icons.Rounded.Send,
+            icon = NavBarIconPack.Chat,
         ),
         NavBarItem(
             name = "Star",
             route = "star",
-            icon = Icons.Rounded.Star,
+            icon = NavBarIconPack.Save,
         ),
     )
+}
+
+@Composable
+fun xmlToImageVector(id: Int): ImageVector {
+    return ImageVector.vectorResource(id)
 }

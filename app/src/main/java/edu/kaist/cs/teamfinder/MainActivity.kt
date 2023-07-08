@@ -18,7 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -76,7 +76,7 @@ fun MainScreen() {
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
 
-    var selectedItem by remember { mutableStateOf(value = 0) }
+    var selectedItem by remember { mutableIntStateOf(value = 0) }
 
     NavigationBar {
         NavBarItems.NavBarItems.forEachIndexed { index, item ->

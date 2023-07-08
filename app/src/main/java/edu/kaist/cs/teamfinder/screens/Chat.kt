@@ -22,3 +22,28 @@ fun Chat() {
         )
     }
 }
+
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Composable
+//fun Chat() {
+//    val navController = rememberNavController()
+//    val context = LocalContext.current
+//
+//    Scaffold(
+//        bottomBar = { BottomNavigationBar(navController = navController) },
+//        content = { paddingValues: PaddingValues ->
+//            Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
+//                ChatTheme {
+//                    ChannelsScreen(
+//                        title = stringResource(id = R.string.app_name),
+//                        isShowingSearch = true,
+//                        onItemClick = { channel ->
+//                            context.startActivity(MessagesActivity.getIntent(context, channel.cid))
+//                        },
+//                        onBackPressed = { finish() }
+//                    )
+//                }
+//            }
+//        }
+//    )
+//}

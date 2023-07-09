@@ -1,11 +1,9 @@
 package edu.kaist.cs.teamfinder
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
@@ -35,7 +33,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -78,7 +75,6 @@ import com.google.android.gms.tasks.Task
 import com.google.gson.GsonBuilder
 import edu.kaist.cs.teamfinder.screens.Home
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
-import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback

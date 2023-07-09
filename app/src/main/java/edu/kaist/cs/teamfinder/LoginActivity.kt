@@ -76,6 +76,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.gson.GsonBuilder
+import edu.kaist.cs.teamfinder.screens.Home
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
@@ -133,6 +134,12 @@ class LoginActivity : ComponentActivity() {
                         }
                         composable(route = LoginScreen.CreateAccount.name) {
                             CreateAccount(navController = navController)
+                        }
+                        composable(route = LoginScreen.Home.name) {
+                            Home()
+                        }
+                        composable(route = LoginScreen.MainScreen.name) {
+                            MainScreen()
                         }
                     }
                 }
@@ -314,6 +321,7 @@ fun TestLogin(navController: NavHostController) {
                                         println("no data")
                                     } else {
                                         println("data")
+                                        navController.navigate(LoginScreen.MainScreen.name)
                                     }
                                 }
                             }
@@ -828,7 +836,9 @@ fun CreateAccount(modifier: Modifier = Modifier, navController: NavHostControlle
             pop()
         }
 
-        Box(modifier = Modifier.fillMaxWidth().padding(top = 16.dp), contentAlignment = Alignment.Center) {
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 16.dp), contentAlignment = Alignment.Center) {
             ClickableText(
                 text = text,
                 style = TextStyle(fontSize = 12.sp, fontFamily = FontFamily(Font(R.font.dmsans))),

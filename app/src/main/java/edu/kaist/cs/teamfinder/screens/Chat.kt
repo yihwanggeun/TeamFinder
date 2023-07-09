@@ -1,24 +1,24 @@
 package edu.kaist.cs.teamfinder.screens
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import edu.kaist.cs.teamfinder.navbariconpack.Chat
-import edu.kaist.cs.teamfinder.navbariconpack.NavBarIconPack
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import edu.kaist.cs.teamfinder.MessagesActivity
+import edu.kaist.cs.teamfinder.R
+import io.getstream.chat.android.compose.ui.channels.ChannelsScreen
+import io.getstream.chat.android.compose.ui.theme.ChatTheme
 
 @Composable
 fun Chat() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Image(
-            imageVector = NavBarIconPack.Chat,
-            contentDescription = "Chat",
-            modifier = Modifier.size(150.dp)
-                .align(Alignment.Center)
+    val context = LocalContext.current
+
+    ChatTheme {
+        ChannelsScreen(
+            title = stringResource(id = R.string.app_name),
+            isShowingSearch = true,
+            onItemClick = { channel ->
+                context.startActivity(MessagesActivity.getIntent(context, channel.cid))
+            },
         )
     }
 }

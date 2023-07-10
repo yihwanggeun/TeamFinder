@@ -1,4 +1,4 @@
-package edu.kaist.cs.teamfinder
+package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder
 
 sealed class NavRoutes(val route: String) {
     object Home : NavRoutes("home")

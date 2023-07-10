@@ -7,20 +7,20 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -33,12 +33,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.NavRoutes
 import edu.kaist.cs.teamfinder.screens.AddScreen
 import edu.kaist.cs.teamfinder.screens.ChatScreen
 import edu.kaist.cs.teamfinder.screens.HomeScreen
 import edu.kaist.cs.teamfinder.screens.ProjectScreen
 import edu.kaist.cs.teamfinder.screens.SavedScreen
-import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 
 class MainActivity : ComponentActivity() {
     private val remoteDataSource = UserRemoteDataSource(RetrofitInstance.loginService)
@@ -49,25 +49,30 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
-            TeamFinderTheme(dynamicColor = false) {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    MainScreen()
-//                    LoginScreen(loginViewModel)
-                    //init the Navigation Controller for screen navigation
-//                    val navController = rememberNavController()
+            // 앱의 상태를 관리하는 State 변수를 정의합니다.
+            val appState = remember { mutableStateOf(AppState.WELCOME) }
 
-                    //setup the Root Navigation Graph
-//                    MainNavigation(navController)
-                }
+            when (appState.value) {
+                AppState.WELCOME -> WelcomeScreen(onContinueClick = {
+                    // "계속하기" 버튼 클릭 시, appState를 변경하여 LoginScreen으로 이동합니다.
+                    appState.value = AppState.LOGIN
+                })
+
+                AppState.LOGIN -> LoginRoute(onLoginSuccess = {
+                    // 로그인 성공 시, appState를 변경하여 MainScreen으로 이동합니다.
+                    appState.value = AppState.MAIN
+                })
+
+                AppState.MAIN -> MainScreen(username = "사용자 이름")
             }
         }
     }
+}
+
+// 앱의 상태를 나타내는 enum 클래스를 정의합니다.
+enum class AppState {
+    WELCOME, LOGIN, MAIN
 }
 
 @Composable
@@ -92,15 +97,16 @@ fun MainNavigation(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(username: String) {
     val navController = rememberNavController()
 
     Scaffold(
-//        topBar = { TopAppBar(title = {
-//                    Text("Navigation Bar Demo")
-//                }
-//            )
-//        },
+        topBar = {
+            TopAppBar(title = {
+                Text(username)
+            }
+            )
+        },
         content = { paddingValues: PaddingValues ->
             Column(modifier = Modifier.padding(paddingValues)) {
 //                TeamFinderNavHost(navController = navController)

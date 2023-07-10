@@ -8,11 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import edu.kaist.cs.teamfinder.Globals
 import edu.kaist.cs.teamfinder.navbariconpack.Home
 import edu.kaist.cs.teamfinder.navbariconpack.NavBarIconPack
 
 @Composable
 fun Home() {
+    println(Globals.globalUser)
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
             imageVector = NavBarIconPack.Home,

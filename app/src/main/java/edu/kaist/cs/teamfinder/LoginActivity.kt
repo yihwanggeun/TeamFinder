@@ -72,6 +72,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import edu.kaist.cs.teamfinder.screens.Home
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
@@ -298,9 +299,7 @@ fun TestLogin(navController: NavHostController) {
                 )
             }
             Spacer(modifier = Modifier.height(36.dp))
-            val scope = rememberCoroutineScope()
-            val snackbarHostState = remember { SnackbarHostState() }
-
+            //val globalUser = remember { mutableStateOf("") }
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
 
                 Button(
@@ -317,6 +316,12 @@ fun TestLogin(navController: NavHostController) {
                                         println("no data")
                                     } else {
                                         println("data")
+                                        val gson = Gson()
+                                        val user = gson.fromJson(result, Array<User>::class.java)
+                                        val fullname = user[0].fullname
+                                        if (fullname != null) {
+                                            Globals.globalUser = fullname
+                                        }
                                         navController.navigate(LoginScreen.MainScreen.name)
                                     }
                                 }

@@ -43,6 +43,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import edu.kaist.cs.teamfinder.MessagesActivity
 import edu.kaist.cs.teamfinder.R
@@ -52,9 +53,10 @@ import io.getstream.chat.android.compose.ui.theme.ChatTheme
 
 
 @Composable
-fun Chat() {
+fun ChatScreen() {
     val context = LocalContext.current
-    val showDialog =  remember { mutableStateOf(false) }
+    val showDialog = remember { mutableStateOf(false) }
+    val navController = rememberNavController()
 
     if (showDialog.value) {
         CreateNewUserDialog(value = "", setShowDialog = {
@@ -77,6 +79,7 @@ fun Chat() {
             },
             onItemClick = { channel ->
                 context.startActivity(MessagesActivity.getIntent(context, channel.cid))
+//                navController.navigateToChannel(channel.cid)
             },
         )
     }

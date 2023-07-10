@@ -8,18 +8,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import edu.kaist.cs.teamfinder.Globals
-import edu.kaist.cs.teamfinder.navbariconpack.Home
+import edu.kaist.cs.teamfinder.navbariconpack.Add
 import edu.kaist.cs.teamfinder.navbariconpack.NavBarIconPack
 
 @Composable
-fun Home() {
-    println(Globals.globalUser)
+fun AddScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            imageVector = NavBarIconPack.Home,
-            contentDescription = "home",
-            modifier = Modifier.size(150.dp)
+            imageVector = NavBarIconPack.Add,
+            contentDescription = "add",
+            modifier = Modifier
+                .size(150.dp)
                 .align(Alignment.Center)
         )
     }

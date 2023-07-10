@@ -11,11 +11,12 @@ sealed class RootScreen(val route: String) {
 
 sealed class LeafScreen(val route: String) {
     object Home : LeafScreen("home")
+    object Profile : LeafScreen("profile")
     object Project : LeafScreen("project")
     object Add : LeafScreen("add")
     object Chat : LeafScreen("chat")
-
     object Channel : LeafScreen("channel")
     object Saved : LeafScreen("saved")
     object Login : LeafScreen("login")
+    object Welcome : LeafScreen("welcome")
 }

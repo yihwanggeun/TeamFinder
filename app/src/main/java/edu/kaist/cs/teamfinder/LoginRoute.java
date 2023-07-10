@@ -1,6 +1,6 @@
 package edu.kaist.cs.teamfinder;
 
-public enum LoginScreen {
+public enum LoginRoute {
     Login,
     TestLogin,
     CreateAccount,

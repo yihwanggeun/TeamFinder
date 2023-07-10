@@ -16,16 +16,21 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.TeamFinderNavHost
+import edu.kaist.cs.teamfinder.screens.AddScreen
+import edu.kaist.cs.teamfinder.screens.ChatScreen
+import edu.kaist.cs.teamfinder.screens.HomeScreen
+import edu.kaist.cs.teamfinder.screens.ProjectScreen
+import edu.kaist.cs.teamfinder.screens.SavedScreen
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,7 +38,7 @@ class MainActivity : ComponentActivity() {
     private val userRepository = UserRepository(remoteDataSource) // UserRepository 인스턴스 생성
     private val viewModelFactory =
         LoginViewModelFactory(userRepository) // LoginViewModelFactory 인스턴스 생성
-    private val loginViewModel: LoginViewModel by viewModels { viewModelFactory } // LoginViewModel 인스턴스 생성
+    private val userViewModel: UserViewModel by viewModels { viewModelFactory } // LoginViewModel 인스턴스 생성
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +52,35 @@ class MainActivity : ComponentActivity() {
                 ) {
                     MainScreen()
 //                    LoginScreen(loginViewModel)
+                    //init the Navigation Controller for screen navigation
+//                    val navController = rememberNavController()
+
+                    //setup the Root Navigation Graph
+//                    MainNavigation(navController)
                 }
             }
         }
+    }
+}
+
+@Composable
+fun MainNavigation(
+    navController: NavHostController
+) {
+    val auth = false
+    val initialRoute =
+        if (auth) {
+            RootScreen.Home.route
+        } else {
+            RootScreen.Login.route
+        }
+
+    NavHost(
+        navController = navController,
+        startDestination = initialRoute
+    ) {
+        addHomeGraph(navController)
+        addLoginGraph(navController)
     }
 }
 
@@ -58,21 +89,41 @@ class MainActivity : ComponentActivity() {
 fun MainScreen() {
     val navController = rememberNavController()
 
-    Scaffold (
-        topBar = { TopAppBar(title = {
-                    Text("Navigation Bar Demo")
-                }
-            )
-        },
+    Scaffold(
+//        topBar = { TopAppBar(title = {
+//                    Text("Navigation Bar Demo")
+//                }
+//            )
+//        },
         content = { paddingValues: PaddingValues ->
             Column(modifier = Modifier.padding(paddingValues)) {
-                TeamFinderNavHost(navController = navController)
-
+//                TeamFinderNavHost(navController = navController)
+                MainNavHost(navController = navController)
             }
         },
         bottomBar = { BottomNavigationBar(navController = navController) },
     )
 }
+
+@Composable
+fun MainNavHost(
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController(),
+    startDestination: String = "home"
+) {
+    NavHost(
+        modifier = modifier,
+        navController = navController,
+        startDestination = startDestination
+    ) {
+        composable(NavRoutes.Home.route) { HomeScreen() }
+        composable(NavRoutes.Project.route) { ProjectScreen() }
+        composable(NavRoutes.Add.route) { AddScreen() }
+        composable(NavRoutes.Chat.route) { ChatScreen() }
+        composable(NavRoutes.Saved.route) { SavedScreen() }
+    }
+}
+
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
@@ -103,6 +154,5 @@ fun BottomNavigationBar(navController: NavHostController) {
             )
         }
     }
-
 }
 

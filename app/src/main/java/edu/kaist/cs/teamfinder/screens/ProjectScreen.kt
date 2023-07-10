@@ -8,16 +8,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import edu.kaist.cs.teamfinder.navbariconpack.Connection
 import edu.kaist.cs.teamfinder.navbariconpack.NavBarIconPack
-import edu.kaist.cs.teamfinder.navbariconpack.Save
 
 @Composable
-fun Star() {
+fun ProjectScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            imageVector = NavBarIconPack.Save,
-            contentDescription = "star",
-            modifier = Modifier.size(150.dp)
+            imageVector = NavBarIconPack.Connection,
+            contentDescription = "projects",
+            modifier = Modifier
+                .size(150.dp)
                 .align(Alignment.Center)
         )
     }

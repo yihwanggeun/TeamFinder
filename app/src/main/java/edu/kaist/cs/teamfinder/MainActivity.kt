@@ -3,6 +3,7 @@ package edu.kaist.cs.teamfinder
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -18,27 +19,25 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import edu.kaist.cs.teamfinder.screens.Add
-import edu.kaist.cs.teamfinder.screens.Chat
-import edu.kaist.cs.teamfinder.screens.Home
-import edu.kaist.cs.teamfinder.screens.Posting
-import edu.kaist.cs.teamfinder.screens.Star
+import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.TeamFinderNavHost
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 
 class MainActivity : ComponentActivity() {
+    private val remoteDataSource = UserRemoteDataSource(RetrofitInstance.loginService)
+    private val userRepository = UserRepository(remoteDataSource) // UserRepository 인스턴스 생성
+    private val viewModelFactory =
+        LoginViewModelFactory(userRepository) // LoginViewModelFactory 인스턴스 생성
+    private val loginViewModel: LoginViewModel by viewModels { viewModelFactory } // LoginViewModel 인스턴스 생성
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //Hello World
+
         setContent {
             TeamFinderTheme(dynamicColor = false) {
                 // A surface container using the 'background' color from the theme
@@ -47,6 +46,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     MainScreen()
+//                    LoginScreen(loginViewModel)
                 }
             }
         }
@@ -66,7 +66,7 @@ fun MainScreen() {
         },
         content = { paddingValues: PaddingValues ->
             Column(modifier = Modifier.padding(paddingValues)) {
-                NavigationHost(navController = navController)
+                TeamFinderNavHost(navController = navController)
 
             }
         },
@@ -76,22 +76,27 @@ fun MainScreen() {
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
-
-    var selectedItem by remember { mutableIntStateOf(value = 0) }
-
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+//    https://developer.android.com/jetpack/compose/navigation?hl=ko#bottom-nav
     NavigationBar {
-        NavBarItems.NavBarItems.forEachIndexed { index, item ->
+        NavBarItems.NavBarItems.forEachIndexed { _, item ->
             NavigationBarItem(
                 icon = { Image(imageVector = item.icon, contentDescription = item.name) },
-                label = { Text(text = item.name ) },
-                selected = selectedItem == index,
+                label = { Text(text = item.name) },
+                selected = currentDestination?.hierarchy?.any { it.route == item.route } == true,
                 onClick = {
                     navController.navigate(item.route) {
+                        // Pop up to the start destination of the graph to
+                        // avoid building up a large stack of destinations
+                        // on the back stack as users select items
                         popUpTo(navController.graph.findStartDestination().id) {
                             saveState = true
                         }
-                        selectedItem = index
+                        // Avoid multiple copies of the same destination when
+                        // reselecting the same item
                         launchSingleTop = true
+                        // Restore state when reselecting a previously selected item
                         restoreState = true
                     }
                 }
@@ -101,35 +106,3 @@ fun BottomNavigationBar(navController: NavHostController) {
 
 }
 
-@Composable
-fun NavigationHost(navController: NavHostController) {
-
-    NavHost(
-        navController = navController,
-        startDestination = NavRoutes.Home.route,
-//        builder =
-    ) {
-        composable(NavRoutes.Home.route) {
-            Home()
-        }
-
-        composable(NavRoutes.Posting.route) {
-            Posting()
-        }
-
-        composable(NavRoutes.Add.route) {
-            Add()
-        }
-
-        composable(NavRoutes.Chat.route) {
-            Chat()
-        }
-
-        composable(NavRoutes.Star.route) {
-            Star()
-        }
-
-
-    }
-
-}

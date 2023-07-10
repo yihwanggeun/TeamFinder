@@ -16,8 +16,8 @@ object NavBarItems {
             icon = NavBarIconPack.Home
         ),
         NavBarItem(
-            name = "Posting",
-            route = "posting",
+            name = "Project",
+            route = "project",
             icon = NavBarIconPack.Connection,
         ),
         NavBarItem(
@@ -31,8 +31,8 @@ object NavBarItems {
             icon = NavBarIconPack.Chat,
         ),
         NavBarItem(
-            name = "Star",
-            route = "star",
+            name = "Saved",
+            route = "saved",
             icon = NavBarIconPack.Save,
         ),
     )

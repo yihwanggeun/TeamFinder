@@ -13,27 +13,27 @@ object NavBarItems {
         NavBarItem(
             name = "Home",
             route = "home",
-            icon = NavBarIconPack.Home
+            icon = R.drawable.home,
         ),
         NavBarItem(
             name = "Project",
             route = "project",
-            icon = NavBarIconPack.Connection,
+            icon = R.drawable.connection,
         ),
         NavBarItem(
             name = "Add",
             route = "add",
-            icon = NavBarIconPack.Add,
+            icon = R.drawable.add,
         ),
         NavBarItem(
             name = "Chat",
             route = "chat",
-            icon = NavBarIconPack.Chat,
+            icon = R.drawable.chat,
         ),
         NavBarItem(
             name = "Saved",
             route = "saved",
-            icon = NavBarIconPack.Save,
+            icon = R.drawable.save,
         ),
     )
 }

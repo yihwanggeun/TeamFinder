@@ -74,7 +74,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import edu.kaist.cs.teamfinder.screens.Home
+import edu.kaist.cs.teamfinder.screens.HomeScreen
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -93,7 +93,7 @@ lateinit var mGoogleSignInClient: GoogleSignInClient
 lateinit var resultLauncher : ActivityResultLauncher<Intent>
 var gson = GsonBuilder().setLenient().create()
 val retrofit = Retrofit.Builder()
-    .baseUrl("https://0bfb-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
+    .baseUrl("https://52a9-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
     .addConverterFactory(ScalarsConverterFactory.create())
     .addConverterFactory(GsonConverterFactory.create(gson)) // 문자열 응답을 처리하기 위해 ScalarsConverterFactory를 사용합니다
     .build()
@@ -121,21 +121,21 @@ class LoginActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = LoginScreen.Login.name
+                        startDestination = LoginRoute.Login.name
                     ) {
-                        composable(route = LoginScreen.Login.name) {
+                        composable(route = LoginRoute.Login.name) {
                             Login(name = "Kaist", navController = navController)
                         }
-                        composable(route = LoginScreen.TestLogin.name) {
+                        composable(route = LoginRoute.TestLogin.name) {
                             TestLogin(navController = navController)
                         }
-                        composable(route = LoginScreen.CreateAccount.name) {
+                        composable(route = LoginRoute.CreateAccount.name) {
                             CreateAccount(navController = navController)
                         }
-                        composable(route = LoginScreen.Home.name) {
-                            Home()
+                        composable(route = LoginRoute.Home.name) {
+                            HomeScreen()
                         }
-                        composable(route = LoginScreen.MainScreen.name) {
+                        composable(route = LoginRoute.MainScreen.name) {
                             MainScreen()
                         }
                     }
@@ -322,7 +322,7 @@ fun TestLogin(navController: NavHostController) {
                                         if (fullname != null) {
                                             Globals.globalUser = fullname
                                         }
-                                        navController.navigate(LoginScreen.MainScreen.name)
+                                        navController.navigate(LoginRoute.MainScreen.name)
                                     }
                                 }
                             }
@@ -371,7 +371,7 @@ fun TestLogin(navController: NavHostController) {
                         val userData : User = User(email,password,displayName,photoUrl)
                         println("Here?")
                         println(userData)
-                        navController.navigate(LoginScreen.CreateAccount.name)
+                        navController.navigate(LoginRoute.CreateAccount.name)
                         apiService.createUser(userData).enqueue(object : Callback<String> {
                             override fun onResponse(call: Call<String>, response: Response<String>) {
                                 println(response)
@@ -451,7 +451,7 @@ fun TestLogin(navController: NavHostController) {
                     onClick = { offset ->
                         text.getStringAnnotations(tag = "SIGNUP", start = offset, end = offset)
                             .firstOrNull()?.let {
-                                navController.navigate(LoginScreen.CreateAccount.name)
+                                navController.navigate(LoginRoute.CreateAccount.name)
                             }
                     }
                 )
@@ -560,7 +560,7 @@ fun Login(name: String, modifier: Modifier = Modifier, navController: NavHostCon
                         .height(50.dp)
                         .clickable {
 
-                            navController.navigate(LoginScreen.TestLogin.name)
+                            navController.navigate(LoginRoute.TestLogin.name)
                         }
                 )
             }
@@ -846,7 +846,7 @@ fun CreateAccount(modifier: Modifier = Modifier, navController: NavHostControlle
                 onClick = { offset ->
                     text.getStringAnnotations(tag = "SIGNIN", start = offset, end = offset)
                         .firstOrNull()?.let {
-                            navController.navigate(LoginScreen.TestLogin.name)
+                            navController.navigate(LoginRoute.TestLogin.name)
                             println("Sign In clicked")
                         }
                 }

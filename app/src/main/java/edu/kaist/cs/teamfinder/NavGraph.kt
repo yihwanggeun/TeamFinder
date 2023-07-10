@@ -10,11 +10,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import edu.kaist.cs.teamfinder.LeafScreen
 import edu.kaist.cs.teamfinder.RootScreen
-import edu.kaist.cs.teamfinder.screens.Add
-import edu.kaist.cs.teamfinder.screens.Chat
-import edu.kaist.cs.teamfinder.screens.Home
-import edu.kaist.cs.teamfinder.screens.Project
-import edu.kaist.cs.teamfinder.screens.Saved
+import edu.kaist.cs.teamfinder.screens.AddScreen
+import edu.kaist.cs.teamfinder.screens.ChatScreen
+import edu.kaist.cs.teamfinder.screens.HomeScreen
+import edu.kaist.cs.teamfinder.screens.ProjectScreen
+import edu.kaist.cs.teamfinder.screens.SavedScreen
 
 @Composable
 fun TeamFinderNavHost(
@@ -63,7 +63,7 @@ private fun NavGraphBuilder.HomeGraph(navController: NavController) {
 
 private fun NavGraphBuilder.showHome(navController: NavController) {
     composable(route = LeafScreen.Home.route) {
-        Home()
+        HomeScreen()
     }
 }
 
@@ -78,7 +78,7 @@ private fun NavGraphBuilder.ProjectGraph(navController: NavController) {
 
 private fun NavGraphBuilder.showProject(navController: NavController) {
     composable(route = LeafScreen.Project.route) {
-        Project()
+        ProjectScreen()
     }
 }
 
@@ -93,7 +93,7 @@ private fun NavGraphBuilder.AddGraph(navController: NavController) {
 
 private fun NavGraphBuilder.showAdd(navController: NavController) {
     composable(route = LeafScreen.Add.route) {
-        Add()
+        AddScreen()
     }
 }
 
@@ -108,7 +108,7 @@ private fun NavGraphBuilder.ChatGraph(navController: NavController) {
 
 private fun NavGraphBuilder.showChat(navController: NavController) {
     composable(route = LeafScreen.Chat.route) {
-        Chat()
+        ChatScreen()
     }
 }
 
@@ -123,7 +123,7 @@ private fun NavGraphBuilder.SavedGraph(navController: NavController) {
 
 private fun NavGraphBuilder.showSaved(navController: NavController) {
     composable(route = LeafScreen.Saved.route) {
-        Saved()
+        SavedScreen()
     }
 }
 

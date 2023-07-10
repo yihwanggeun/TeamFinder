@@ -8,17 +8,24 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -79,8 +86,7 @@ fun MainNavigation(
         navController = navController,
         startDestination = initialRoute
     ) {
-        addHomeGraph(navController)
-        addLoginGraph(navController)
+
     }
 }
 
@@ -130,10 +136,22 @@ fun BottomNavigationBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 //    https://developer.android.com/jetpack/compose/navigation?hl=ko#bottom-nav
-    NavigationBar {
+    NavigationBar(containerColor = Color(0xFFFFFFFF),modifier = Modifier.height(72.dp)) {
         NavBarItems.NavBarItems.forEachIndexed { _, item ->
             NavigationBarItem(
-                icon = { Image(imageVector = item.icon, contentDescription = item.name) },
+                icon = {
+                    Image(
+                        painter = painterResource(id = item.icon),
+                        contentDescription = item.name,
+                        modifier = Modifier.size(24.dp), // adjust the size here
+                        contentScale = ContentScale.Fit,
+
+                        )
+                },
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = Color.Green,
+                    indicatorColor = Color.White
+                ),
                 label = { Text(text = item.name) },
                 selected = currentDestination?.hierarchy?.any { it.route == item.route } == true,
                 onClick = {

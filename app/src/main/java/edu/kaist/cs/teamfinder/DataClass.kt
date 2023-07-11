@@ -19,3 +19,13 @@ data class Project(
     val projectMax: Int,
     val projectTag: ArrayList<String>
 )
+
+data class Feed(
+    val name: String,
+    val imageResourceId: Int,
+    val title: String,
+    val note: String,
+    val date: String,
+    val like: Int,
+    val comment: Int
+)

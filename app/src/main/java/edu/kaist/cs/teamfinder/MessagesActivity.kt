@@ -29,7 +29,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import edu.kaist.cs.teamfinder.screens.AvatarInfoScreen
+import edu.kaist.cs.teamfinder.screens.user
 import io.getstream.chat.android.common.state.MessageMode.MessageThread
 import io.getstream.chat.android.compose.state.messages.SelectedMessageOptionsState
 import io.getstream.chat.android.compose.state.messages.SelectedMessageReactionsState
@@ -238,4 +241,5 @@ class MessagesActivity : ComponentActivity() {
         )
     }
 }
+
 

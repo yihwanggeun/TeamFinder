@@ -33,6 +33,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.ApplyScreen
 import edu.kaist.cs.teamfinder.screens.AddScreen
 import edu.kaist.cs.teamfinder.screens.ChatScreen
 import edu.kaist.cs.teamfinder.screens.HomeScreen
@@ -57,36 +58,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    // Root Component of the Application
+                    // We are using `MainScreen` as the root component here.
                     MainScreen()
-//                    LoginScreen(loginViewModel)
-                    //init the Navigation Controller for screen navigation
-//                    val navController = rememberNavController()
-
-                    //setup the Root Navigation Graph
-//                    MainNavigation(navController)
                 }
             }
         }
-    }
-}
-
-@Composable
-fun MainNavigation(
-    navController: NavHostController
-) {
-    val auth = false
-    val initialRoute =
-        if (auth) {
-            RootScreen.Home.route
-        } else {
-            RootScreen.Login.route
-        }
-
-    NavHost(
-        navController = navController,
-        startDestination = initialRoute
-    ) {
-
     }
 }
 
@@ -96,14 +73,8 @@ fun MainScreen() {
     val navController = rememberNavController()
 
     Scaffold(
-//        topBar = { TopAppBar(title = {
-//                    Text("Navigation Bar Demo")
-//                }
-//            )
-//        },
         content = { paddingValues: PaddingValues ->
             Column(modifier = Modifier.padding(paddingValues)) {
-//                TeamFinderNavHost(navController = navController)
                 MainNavHost(navController = navController)
             }
         },
@@ -111,6 +82,7 @@ fun MainScreen() {
     )
 }
 
+// This is the main navigation host of your application. It defines all the possible screens and their routes.
 @Composable
 fun MainNavHost(
     modifier: Modifier = Modifier,
@@ -127,15 +99,18 @@ fun MainNavHost(
         composable(NavRoutes.Add.route) { AddScreen() }
         composable(NavRoutes.Chat.route) { ChatScreen() }
         composable(NavRoutes.Saved.route) { SavedScreen() }
+        // Here you can add your new screen
+        //composable(NavRoutes.Apply.route) { ApplyScreen() }
     }
 }
 
-
+// This is your custom bottom navigation bar.
+// It also uses the NavController to perform the navigation between different screens.
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-//    https://developer.android.com/jetpack/compose/navigation?hl=ko#bottom-nav
+
     NavigationBar(containerColor = Color(0xFFFFFFFF),modifier = Modifier.height(72.dp)) {
         NavBarItems.NavBarItems.forEachIndexed { _, item ->
             NavigationBarItem(
@@ -143,10 +118,9 @@ fun BottomNavigationBar(navController: NavHostController) {
                     Image(
                         painter = painterResource(id = item.icon),
                         contentDescription = item.name,
-                        modifier = Modifier.size(24.dp), // adjust the size here
+                        modifier = Modifier.size(24.dp),
                         contentScale = ContentScale.Fit,
-
-                        )
+                    )
                 },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = Color.Green,
@@ -156,16 +130,10 @@ fun BottomNavigationBar(navController: NavHostController) {
                 selected = currentDestination?.hierarchy?.any { it.route == item.route } == true,
                 onClick = {
                     navController.navigate(item.route) {
-                        // Pop up to the start destination of the graph to
-                        // avoid building up a large stack of destinations
-                        // on the back stack as users select items
                         popUpTo(navController.graph.findStartDestination().id) {
                             saveState = true
                         }
-                        // Avoid multiple copies of the same destination when
-                        // reselecting the same item
                         launchSingleTop = true
-                        // Restore state when reselecting a previously selected item
                         restoreState = true
                     }
                 }
@@ -173,4 +141,3 @@ fun BottomNavigationBar(navController: NavHostController) {
         }
     }
 }
-

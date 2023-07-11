@@ -5,5 +5,6 @@ public enum LoginRoute {
     TestLogin,
     CreateAccount,
     Home,
-    MainScreen
+    MainScreen,
+    ApplyScreen
 }

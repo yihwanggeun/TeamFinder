@@ -1,13 +1,14 @@
-package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
+package edu.kaist.cs.teamfinder.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,11 +16,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,221 +36,442 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import edu.kaist.cs.teamfinder.CreateAccount
 import edu.kaist.cs.teamfinder.Engineer
-import edu.kaist.cs.teamfinder.Login
-import edu.kaist.cs.teamfinder.LoginScreen
-import edu.kaist.cs.teamfinder.NavRoutes
 import edu.kaist.cs.teamfinder.Project
 import edu.kaist.cs.teamfinder.R
+import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.TopRateEngineer
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 
 
-
 @Composable
-fun ProjectList(projectList: List<Project>) {
+fun ProjectList(
+    projectList: List<Project>,
+    onProjectListClick: (Project) -> Unit
+) {
     val navController = rememberNavController()
-    LazyColumn {
-        items(projectList) { project ->
-            Box(
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .height(3000.dp)
+        ) {
+            Row(
                 modifier = Modifier
-                    .padding(16.dp)
-                    .width(400.dp)
-                    .background(
-                        color = Color(0xFFFFFFFF),
-                        shape = RoundedCornerShape(size = 6.dp)
+                    .fillMaxWidth()
+                    .padding(end = 30.dp, top = 40.dp),
+                horizontalArrangement = Arrangement.End
+            ) {
+                IconButton(onClick = { }) {
+                    Image(
+                        painter = painterResource(id = R.drawable.sample_image),
+                        contentDescription = "Google logo",
+                        modifier = Modifier
+                            .width(35.dp)
+                            .height(35.dp)
                     )
-                    .height(IntrinsicSize.Min),
+                }
+            }
+            Text(
+                text = "Hello\nOrlando Diggs.",
+                style = TextStyle(
+                    fontSize = 22.sp,
+                    lineHeight = 26.65.sp,
+                    fontFamily = FontFamily(Font(R.font.dmsansbold)),
+                    fontWeight = FontWeight(700),
+                    color = Color(0xFF0D0140),
+                ),
+                modifier = Modifier.padding(start = 16.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = "Most Popular Engineer",
+                style = TextStyle(
+                    fontSize = 10.sp,
+                    lineHeight = 10.sp,
+                    fontFamily = FontFamily(Font(R.font.dmsans)),
+                    fontWeight = FontWeight(300),
+                    color = Color(0xFF0D0140),
+                ),
+                modifier = Modifier.padding(start = 16.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            val engineerList = listOf(
+                Engineer("이황근", R.drawable.sample),
+                Engineer("이황근", R.drawable.sample),
+                Engineer("이황근", R.drawable.sample),
+                Engineer("이황근", R.drawable.sample),
+                Engineer("이황근", R.drawable.sample),
+                Engineer("이황근", R.drawable.sample),
+                Engineer("이황근", R.drawable.sample),
+                Engineer("이황근", R.drawable.sample)
+                // 기타 기술자 추가
+            )
+            TopRateEngineer(engineerList)
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "Find Your Job",
+                modifier = Modifier.padding(start = 16.dp),
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    fontFamily = FontFamily(Font(R.font.dmsans)),
+                    fontWeight = FontWeight(700),
+                )
+            )
+            Spacer(modifier = Modifier.height(16.dp))
 
-                ){
-                Column() {
-                    Row(modifier = Modifier.fillMaxWidth()){
-                        Box(
+            Row() {
+                Box(
+                    modifier = Modifier
+                        .width(150.dp)
+                        .padding(start = 16.dp)
+                        .height(170.dp)
+                        .background(
+                            color = Color(0xFFAFECFE),
+                            shape = RoundedCornerShape(size = 6.dp)
+                        )
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.react),
+                            contentDescription = "react",
                             modifier = Modifier
-                                .size(60.dp) // 이미지 크기를 조절하십시오.
-                                .padding(start = 16.dp, top = 16.dp)
-                                .clip(CircleShape)
-                                .background(Color(0xFFD6CDFE))
-                            ) {
-                            Image(
-                                painter = painterResource(id = project.projectImageResourceId),
-                                contentDescription = project.projectName,
-                                modifier = Modifier
-                                    .size(24.dp) // 이미지 크기를 조절하십시오.
-                                    .clip(CircleShape)
-                                    .align(Alignment.Center)
+                                .size(100.dp),
+
 
                             )
+                        Text(
+                            text = "44.5k",
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                fontFamily = FontFamily(Font(R.font.dmsans)),
+                                fontWeight = FontWeight(700),
+                                color = Color(0xFF0D0140),
+                            )
+                        )
+                        Text(
+                            text = "App Project",
+                            style = TextStyle(
+                                fontSize = 14.sp,
+                                fontFamily = FontFamily(Font(R.font.dmsans)),
+                                fontWeight = FontWeight(400),
+                                color = Color(0xFF0D0140),
+                            )
+                        )
 
-                        }
-                        Column(modifier = Modifier.weight(1f)){
+
+                    }
+                }
+                Column {
+                    Box(
+                        modifier = Modifier
+                            .padding(start = 20.dp)
+                            .width(170.dp)
+                            .height(75.dp)
+                            .background(
+                                color = Color(0xFFBEAFFE),
+                                shape = RoundedCornerShape(size = 6.dp)
+                            ),
+
+                        ) {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            Spacer(modifier = Modifier.height(16.dp))
                             Text(
-                                text = "Schedule App Using Chat GPT to Improve",
+                                text = "66.8k",
                                 style = TextStyle(
-                                    fontSize = 14.sp,
+                                    fontSize = 16.sp,
                                     fontFamily = FontFamily(Font(R.font.dmsans)),
                                     fontWeight = FontWeight(700),
-                                    color = Color(0xFF150B3D),
-                                ),
-                                modifier = Modifier.padding(start = 16.dp, top = 20.dp)
+                                    color = Color(0xFF0D0140),
+                                )
                             )
                             Text(
                                 text = "Web Project",
                                 style = TextStyle(
-                                    fontSize = 12.sp,
+                                    fontSize = 14.sp,
                                     fontFamily = FontFamily(Font(R.font.dmsans)),
                                     fontWeight = FontWeight(400),
-                                    color = Color(0xFF524B6B),
-                                ),
-                                modifier = Modifier.padding(start = 16.dp,top = 4.dp),
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
+                                    color = Color(0xFF0D0140),
+                                )
                             )
                         }
-                        Box (
-                                modifier = Modifier.padding(top = 16.dp, end = 16.dp),
-                                Alignment.TopEnd
-                            ){
-                            Image(
-                                painter = painterResource(id = R.drawable.save2),
-                                contentDescription = "save",
-                                modifier = Modifier
-                                    .size(24.dp) // 이미지 크기를 조절하십시오.
+                    }
+                    Box(
+                        modifier = Modifier
+                            .padding(start = 20.dp, top = 16.dp)
+                            .width(170.dp)
+                            .height(75.dp)
+                            .background(
+                                color = Color(0xFFFFD6AD),
+                                shape = RoundedCornerShape(size = 6.dp)
+                            )
+
+                    ) {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Text(
+                                text = "66.8k",
+                                style = TextStyle(
+                                    fontSize = 16.sp,
+                                    fontFamily = FontFamily(Font(R.font.dmsans)),
+                                    fontWeight = FontWeight(700),
+                                    color = Color(0xFF0D0140),
+                                )
+                            )
+                            Text(
+                                text = "Software Project",
+                                style = TextStyle(
+                                    fontSize = 14.sp,
+                                    fontFamily = FontFamily(Font(R.font.dmsans)),
+                                    fontWeight = FontWeight(400),
+                                    color = Color(0xFF0D0140),
+                                )
                             )
                         }
-
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Row(modifier = Modifier.padding(start = 18.dp)) {
-                        val text = buildAnnotatedString {
-                            withStyle(style = SpanStyle(color = Color.Black, fontFamily = FontFamily(Font(R.font.dmsansbold)))) {
-                                append("1명 / ")
-                            }
-                            withStyle(style = SpanStyle(color = Color(0xFFFCA34D),fontFamily = FontFamily(Font(R.font.dmsansbold)),textDecoration = TextDecoration.Underline)) {
-                                append("4명\n")
-                            }
-                        }
+                }
 
-                        Text(
-                            text = text,
-                            fontSize = 15.sp,
-                            fontFamily = FontFamily(Font(R.font.dmsansbold)),
-                            modifier = Modifier.height(20.dp)
-                        )
-                    }
-                    Spacer(modifier = Modifier.height(10.dp))
-                    Row(modifier = Modifier.fillMaxWidth()) {
-                        Row(modifier = Modifier.fillMaxWidth()) {
-                            Box(modifier = Modifier.weight(1f)) {
-                                // 첫번째 Box
-                                Row {
-                                    Box(
-                                        modifier = Modifier
-                                            .wrapContentWidth() // 가용 공간을 차지하도록 설정
-                                            .padding(bottom = 8.dp, start = 16.dp)
-                                            .height(30.dp)
-                                            .background(
-                                                color = Color(0x1ACBC9D4),
-                                                shape = RoundedCornerShape(size = 6.dp)
-                                            ),
-                                        contentAlignment = Alignment.CenterStart // 왼쪽 정렬
-                                    ) {
-                                        Text(
-                                            text = "Django Developer",
-                                            style = TextStyle(
-                                                fontSize = 10.sp,
-                                                fontFamily = FontFamily(Font(R.font.dmsans)),
-                                                fontWeight = FontWeight(400),
-                                                color = Color(0xFF524B6B),
-                                            ),
-                                            modifier = Modifier.padding(8.dp)
-                                        )
-                                    }
 
-                                    // 두번째 Box
-                                    Box(
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "Recently Project List",
+                modifier = Modifier.padding(start = 16.dp),
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    fontFamily = FontFamily(Font(R.font.dmsans)),
+                    fontWeight = FontWeight(700),
+                )
+            )
+            LazyColumn {
+                items(projectList) { project ->
+                    Box(
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .width(400.dp)
+                            .background(
+                                color = Color(0xFFFFFFFF),
+                                shape = RoundedCornerShape(size = 6.dp)
+                            )
+                            .height(IntrinsicSize.Min),
+
+                        ) {
+                        Column() {
+                            Row(modifier = Modifier.fillMaxWidth()) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(60.dp) // 이미지 크기를 조절하십시오.
+                                        .padding(start = 16.dp, top = 16.dp)
+                                        .clip(CircleShape)
+                                        .background(Color(0xFFD6CDFE))
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = project.projectImageResourceId),
+                                        contentDescription = project.projectName,
                                         modifier = Modifier
-                                            .wrapContentWidth() // 가용 공간을 차지하도록 설정
-                                            .height(30.dp)
-                                            .padding(start = 8.dp)
-                                            .background(
-                                                color = Color(0x1ACBC9D4),
-                                                shape = RoundedCornerShape(size = 6.dp)
-                                            ),
-                                        contentAlignment = Alignment.CenterStart // 왼쪽 정렬
-                                    ) {
-                                        Text(
-                                            text = "Swift Developer",
-                                            style = TextStyle(
-                                                fontSize = 10.sp,
-                                                fontFamily = FontFamily(Font(R.font.dmsans)),
-                                                fontWeight = FontWeight(400),
-                                                color = Color(0xFF524B6B),
-                                            ),
-                                            modifier = Modifier.padding(8.dp)
-                                        )
-                                    }
+                                            .size(24.dp) // 이미지 크기를 조절하십시오.
+                                            .clip(CircleShape)
+                                            .align(Alignment.Center)
+
+                                    )
+
                                 }
-                            }
-                            // 'Apply' 버튼
-                            Box(
-                                modifier = Modifier
-                                    .width(80.dp)
-                                    .height(30.dp)
-                                    .padding(end = 16.dp)
-                                    .background(
-                                        color = Color(0x1AFF6B2C),
-                                        shape = RoundedCornerShape(size = 6.dp)
-                                    ),
-                                contentAlignment = Alignment.Center,
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        text = "Schedule App Using Chat GPT to Improve",
+                                        style = TextStyle(
+                                            fontSize = 14.sp,
+                                            fontFamily = FontFamily(Font(R.font.dmsans)),
+                                            fontWeight = FontWeight(700),
+                                            color = Color(0xFF150B3D),
+                                        ),
+                                        modifier = Modifier.padding(start = 16.dp, top = 20.dp)
+                                    )
+                                    Text(
+                                        text = "Web Project",
+                                        style = TextStyle(
+                                            fontSize = 12.sp,
+                                            fontFamily = FontFamily(Font(R.font.dmsans)),
+                                            fontWeight = FontWeight(400),
+                                            color = Color(0xFF524B6B),
+                                        ),
+                                        modifier = Modifier.padding(start = 16.dp, top = 4.dp),
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
+                                }
+                                Box(
+                                    modifier = Modifier.padding(top = 16.dp, end = 16.dp),
+                                    Alignment.TopEnd
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.save2),
+                                        contentDescription = "save",
+                                        modifier = Modifier
+                                            .size(24.dp) // 이미지 크기를 조절하십시오.
+                                    )
+                                }
 
-                            ) {
+                            }
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Row(modifier = Modifier.padding(start = 18.dp)) {
                                 val text = buildAnnotatedString {
-                                    pushStringAnnotation(tag = "Apply", annotation = "Apply") // Use a tag to identify the clickable text
-                                    withStyle(style = SpanStyle(color = Color(0xFF524B6B), textDecoration = TextDecoration.Underline)) {
-                                        append("Apply")
+                                    withStyle(
+                                        style = SpanStyle(
+                                            color = Color.Black,
+                                            fontFamily = FontFamily(Font(R.font.dmsansbold))
+                                        )
+                                    ) {
+                                        append("1명 / ")
                                     }
-                                    pop()
+                                    withStyle(
+                                        style = SpanStyle(
+                                            color = Color(0xFFFCA34D),
+                                            fontFamily = FontFamily(Font(R.font.dmsansbold)),
+                                            textDecoration = TextDecoration.Underline
+                                        )
+                                    ) {
+                                        append("4명\n")
+                                    }
                                 }
-                                ClickableText(
+
+                                Text(
                                     text = text,
-                                    style = TextStyle(
-                                        fontSize = 10.sp,
-                                        fontFamily = FontFamily(Font(R.font.dmsans)),
-                                        fontWeight = FontWeight(400),
-                                    ),
-                                    modifier = Modifier.padding(4.dp),
-                                    onClick = { offset ->
-                                        text.getStringAnnotations(tag = "Apply", start = offset, end = offset)
-                                            .firstOrNull()?.let {
-                                                println("Apply")
-                                            }
-                                    }
+                                    fontSize = 15.sp,
+                                    fontFamily = FontFamily(Font(R.font.dmsansbold)),
+                                    modifier = Modifier.height(20.dp)
                                 )
                             }
+                            Spacer(modifier = Modifier.height(10.dp))
+                            Row(modifier = Modifier.fillMaxWidth()) {
+                                Row(modifier = Modifier.fillMaxWidth()) {
+                                    Box(modifier = Modifier.weight(1f)) {
+                                        // 첫번째 Box
+                                        Row {
+                                            Box(
+                                                modifier = Modifier
+                                                    .wrapContentWidth() // 가용 공간을 차지하도록 설정
+                                                    .padding(bottom = 8.dp, start = 16.dp)
+                                                    .height(30.dp)
+                                                    .background(
+                                                        color = Color(0x1ACBC9D4),
+                                                        shape = RoundedCornerShape(size = 6.dp)
+                                                    ),
+                                                contentAlignment = Alignment.CenterStart // 왼쪽 정렬
+                                            ) {
+                                                Text(
+                                                    text = "Django Developer",
+                                                    style = TextStyle(
+                                                        fontSize = 10.sp,
+                                                        fontFamily = FontFamily(Font(R.font.dmsans)),
+                                                        fontWeight = FontWeight(400),
+                                                        color = Color(0xFF524B6B),
+                                                    ),
+                                                    modifier = Modifier.padding(8.dp)
+                                                )
+                                            }
+
+                                            // 두번째 Box
+                                            Box(
+                                                modifier = Modifier
+                                                    .wrapContentWidth() // 가용 공간을 차지하도록 설정
+                                                    .height(30.dp)
+                                                    .padding(start = 8.dp)
+                                                    .background(
+                                                        color = Color(0x1ACBC9D4),
+                                                        shape = RoundedCornerShape(size = 6.dp)
+                                                    ),
+                                                contentAlignment = Alignment.CenterStart // 왼쪽 정렬
+                                            ) {
+                                                Text(
+                                                    text = "Swift Developer",
+                                                    style = TextStyle(
+                                                        fontSize = 10.sp,
+                                                        fontFamily = FontFamily(Font(R.font.dmsans)),
+                                                        fontWeight = FontWeight(400),
+                                                        color = Color(0xFF524B6B),
+                                                    ),
+                                                    modifier = Modifier.padding(8.dp)
+                                                )
+                                            }
+                                        }
+                                    }
+                                    // 'Apply' 버튼
+                                    Box(
+                                        modifier = Modifier
+                                            .width(80.dp)
+                                            .height(30.dp)
+                                            .padding(end = 16.dp)
+                                            .background(
+                                                color = Color(0x1AFF6B2C),
+                                                shape = RoundedCornerShape(size = 6.dp)
+                                            ),
+                                        contentAlignment = Alignment.Center,
+
+                                        ) {
+                                        val text = buildAnnotatedString {
+                                            pushStringAnnotation(
+                                                tag = "Apply",
+                                                annotation = "Apply"
+                                            ) // Use a tag to identify the clickable text
+                                            withStyle(
+                                                style = SpanStyle(
+                                                    color = Color(0xFF524B6B),
+                                                    textDecoration = TextDecoration.Underline
+                                                )
+                                            ) {
+                                                append("Apply")
+                                            }
+                                            pop()
+                                        }
+                                        ClickableText(
+                                            text = text,
+                                            style = TextStyle(
+                                                fontSize = 10.sp,
+                                                fontFamily = FontFamily(Font(R.font.dmsans)),
+                                                fontWeight = FontWeight(400),
+                                            ),
+                                            modifier = Modifier.padding(4.dp),
+                                            onClick = { offset ->
+                                                text.getStringAnnotations(
+                                                    tag = "Apply",
+                                                    start = offset,
+                                                    end = offset
+                                                )
+                                                    .firstOrNull()?.let {
+                                                        onProjectListClick(project)
+                                                        println("Apply")
+                                                    }
+                                                onProjectListClick(project)
+                                            }
+                                        )
+                                    }
+                                }
+                            }
                         }
-
                     }
-
-
                 }
             }
+
         }
     }
 }
-
-
 
 @Preview(showBackground = true)
 @Composable
@@ -265,6 +489,6 @@ fun ProjectView() {
             Project("MadCamp Project",R.drawable.apple,"Web Project",4, projectTag)
             // 기타 기술자 추가
         )
-        ProjectList(projectList)
+        ProjectList(projectList,onProjectListClick = {})
     }
 }

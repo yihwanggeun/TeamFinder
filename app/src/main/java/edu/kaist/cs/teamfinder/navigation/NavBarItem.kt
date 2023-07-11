@@ -1,6 +1,4 @@
-package edu.kaist.cs.teamfinder
-
-import androidx.compose.ui.graphics.vector.ImageVector
+package edu.kaist.cs.teamfinder.navigation
 
 data class NavBarItem(
     val icon: Int,

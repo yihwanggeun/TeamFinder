@@ -1,7 +1,6 @@
-package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
+package edu.kaist.cs.teamfinder.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -24,8 +23,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
-import edu.kaist.cs.teamfinder.CreateAccount
 import edu.kaist.cs.teamfinder.Engineer
 import edu.kaist.cs.teamfinder.R
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
@@ -39,9 +36,9 @@ fun TopRateEngineer(engineerList: List<Engineer>) {
                     painter = painterResource(id = engineer.imageResourceId),
                     contentDescription = engineer.name,
                     modifier = Modifier
-                        .size(100.dp) // 이미지 크기를 조절하십시오.
-                        .padding(4.dp)
-                        .clip(CircleShape)
+                            .size(100.dp) // 이미지 크기를 조절하십시오.
+                            .padding(4.dp)
+                            .clip(CircleShape)
 
                 )
                 Text(
@@ -60,7 +57,8 @@ fun TopRateEngineer(engineerList: List<Engineer>) {
                         painter = painterResource(id = R.drawable.google),
                         contentDescription = "google",
                         modifier = Modifier
-                            .size(8.dp).padding(end = 2.dp)
+                                .size(8.dp)
+                                .padding(end = 2.dp)
 
                     )
                     Text(

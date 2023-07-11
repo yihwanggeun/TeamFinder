@@ -1,12 +1,11 @@
-package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder
+package edu.kaist.cs.teamfinder.navigation
 
 object NavRoutes {
     val Home = Screen("home")
-    val Project = Screen("project")
+    val Feed = Screen("feed")
     val Add = Screen("add")
     val Chat = Screen("chat")
     val Saved = Screen("saved")
-    val Apply = Screen("apply")  // 새로운 화면 라우트 추가
 
     class Screen(val route: String) {
         // You can define additional arguments here for passing arguments between screens

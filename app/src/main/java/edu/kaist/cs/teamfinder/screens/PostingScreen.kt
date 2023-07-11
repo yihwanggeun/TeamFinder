@@ -1,4 +1,4 @@
-package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
+package edu.kaist.cs.teamfinder.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -42,16 +41,16 @@ import edu.kaist.cs.teamfinder.R
 @Composable
 fun PostingScreen() {
     Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color(0xFFF9F9F9))){
+            .fillMaxSize()
+            .background(Color(0xFFF9F9F9))){
         Column(modifier = Modifier.padding(16.dp)) {
             Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically){
                 Image(
                     painter = painterResource(id = R.drawable.back),
                     contentDescription = "back",
                     modifier = Modifier
-                        .size(24.dp) // Adjust the size of your image
-                        .clip(CircleShape)
+                            .size(24.dp) // Adjust the size of your image
+                            .clip(CircleShape)
                 )
                 Spacer(modifier = Modifier.weight(1f))  // Add this line
                 Text(
@@ -83,9 +82,10 @@ fun PostingScreen() {
                 Image(
                     painter = painterResource(id = R.drawable.sample),
                     contentDescription = "sample",
-                    modifier = Modifier.padding(start = 16.dp, top = 16.dp)
-                        .size(36.dp) // 이미지 크기를 조절하십시오.
-                        .clip(CircleShape)
+                    modifier = Modifier
+                            .padding(start = 16.dp, top = 16.dp)
+                            .size(36.dp) // 이미지 크기를 조절하십시오.
+                            .clip(CircleShape)
 
                 )
                 Column(modifier = Modifier.weight(1f)){
@@ -165,7 +165,8 @@ fun PostingScreen() {
                 value = post_description,
                 onValueChange = { post_description = it },
                 modifier = Modifier
-                    .fillMaxWidth().height(100.dp),
+                        .fillMaxWidth()
+                        .height(100.dp),
                 shape = RoundedCornerShape(8.dp),
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color(0xFFFFFFFF),

@@ -19,11 +19,8 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -31,16 +28,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.NavRoutes
+import edu.kaist.cs.teamfinder.navigation.NavBarItems
+import edu.kaist.cs.teamfinder.navigation.NavRoutes
 import edu.kaist.cs.teamfinder.screens.AddScreen
 import edu.kaist.cs.teamfinder.screens.ChatScreen
-import edu.kaist.cs.teamfinder.screens.HomeScreen
-import edu.kaist.cs.teamfinder.screens.ProjectScreen
+import edu.kaist.cs.teamfinder.screens.FeedScreen
+import edu.kaist.cs.teamfinder.screens.Home
 import edu.kaist.cs.teamfinder.screens.SavedScreen
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 
@@ -67,26 +66,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun MainNavigation(
-    navController: NavHostController
-) {
-    val auth = false
-    val initialRoute =
-        if (auth) {
-            RootScreen.Home.route
-        } else {
-            RootScreen.Login.route
-        }
-
-    NavHost(
-        navController = navController,
-        startDestination = initialRoute
-    ) {
-
     }
 }
 
@@ -117,8 +96,14 @@ fun MainNavHost(
         navController = navController,
         startDestination = startDestination
     ) {
-        composable(NavRoutes.Home.route) { HomeScreen() }
-        composable(NavRoutes.Project.route) { ProjectScreen() }
+        composable(NavRoutes.Home.route) {
+            Home(
+                    onProfileClick = { println("Home Profile Click") },
+                    onProjectClick = { println("Home Project Click") },
+                    onProjectTypeClick = { println("Home ProjectType Click") }
+            )
+        }
+        composable(NavRoutes.Feed.route) { FeedScreen(ArrayList(0)) }
         composable(NavRoutes.Add.route) { AddScreen() }
         composable(NavRoutes.Chat.route) { ChatScreen() }
         composable(NavRoutes.Saved.route) { SavedScreen() }
@@ -165,3 +150,15 @@ fun BottomNavigationBar(navController: NavHostController) {
     }
 }
 
+fun NavGraphBuilder.addMainGraph(
+        modifier: Modifier = Modifier
+) {
+    composable(NavRoutes.Home.route) { it ->
+        Home(
+                onProfileClick = { println("Home Profile Click") },
+//            onProjectClick = { pId -> onProjectClick(pId) },
+                onProjectClick = { println("Home Project Click") },
+                onProjectTypeClick = { println("Home Web Type Click") }
+        )
+    }
+}

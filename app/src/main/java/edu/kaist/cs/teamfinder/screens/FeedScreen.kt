@@ -1,4 +1,4 @@
-package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
+package edu.kaist.cs.teamfinder.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,10 +32,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import edu.kaist.cs.teamfinder.Feed
-import edu.kaist.cs.teamfinder.Project
 import edu.kaist.cs.teamfinder.R
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
-import kotlin.reflect.jvm.internal.impl.descriptors.deserialization.PlatformDependentDeclarationFilter.All
 
 @Composable
 fun FeedScreen(feedList: ArrayList<Feed>) {
@@ -43,22 +41,23 @@ fun FeedScreen(feedList: ArrayList<Feed>) {
         items(feedList){ feed ->
             Box(
                 modifier = Modifier
-                    .padding(16.dp)
-                    .width(400.dp)
-                    .background(
-                        color = Color(0xFFFFFFFF),
-                        shape = RoundedCornerShape(size = 16.dp)
-                    )
-                    .height(IntrinsicSize.Min)
+                        .padding(16.dp)
+                        .width(400.dp)
+                        .background(
+                                color = Color(0xFFFFFFFF),
+                                shape = RoundedCornerShape(size = 16.dp)
+                        )
+                        .height(IntrinsicSize.Min)
             ){
                 Column(){
                     Row(modifier = Modifier.fillMaxWidth()){
                         Image(
                             painter = painterResource(id = feed.imageResourceId),
                             contentDescription = feed.name,
-                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
-                                .size(36.dp) // 이미지 크기를 조절하십시오.
-                                .clip(CircleShape)
+                            modifier = Modifier
+                                    .padding(start = 16.dp, top = 16.dp)
+                                    .size(36.dp) // 이미지 크기를 조절하십시오.
+                                    .clip(CircleShape)
 
                         )
                         Column(modifier = Modifier.weight(1f)){
@@ -111,18 +110,19 @@ fun FeedScreen(feedList: ArrayList<Feed>) {
                     )
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(50.dp)
-                            .clip(RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp))// Change to your preferred purple color
-                            .background(color = Color(0xFFD6CDFE))
+                                .fillMaxWidth()
+                                .height(50.dp)
+                                .clip(RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp))// Change to your preferred purple color
+                                .background(color = Color(0xFFD6CDFE))
 
                     ){
                         Row(verticalAlignment = Alignment.CenterVertically){
                             Image(
                                 painter = painterResource(id = R.drawable.like),
                                 contentDescription = "like",
-                                modifier = Modifier.padding(start = 16.dp, top = 16.dp)
-                                    .size(18.dp) // 이미지 크기를 조절하십시오.
+                                modifier = Modifier
+                                        .padding(start = 16.dp, top = 16.dp)
+                                        .size(18.dp) // 이미지 크기를 조절하십시오.
 
                             )
                             Text(
@@ -138,8 +138,9 @@ fun FeedScreen(feedList: ArrayList<Feed>) {
                             Image(
                                 painter = painterResource(id = R.drawable.comment),
                                 contentDescription = "like",
-                                modifier = Modifier.padding(start = 16.dp, top = 16.dp)
-                                    .size(18.dp) // 이미지 크기를 조절하십시오.
+                                modifier = Modifier
+                                        .padding(start = 16.dp, top = 16.dp)
+                                        .size(18.dp) // 이미지 크기를 조절하십시오.
 
                             )
                             Text(

@@ -1,11 +1,6 @@
-package edu.kaist.cs.teamfinder
+package edu.kaist.cs.teamfinder.navigation
 
-import edu.kaist.cs.teamfinder.navbariconpack.Add
-import edu.kaist.cs.teamfinder.navbariconpack.Chat
-import edu.kaist.cs.teamfinder.navbariconpack.Connection
-import edu.kaist.cs.teamfinder.navbariconpack.Home
-import edu.kaist.cs.teamfinder.navbariconpack.NavBarIconPack
-import edu.kaist.cs.teamfinder.navbariconpack.Save
+import edu.kaist.cs.teamfinder.R
 
 object NavBarItems {
 

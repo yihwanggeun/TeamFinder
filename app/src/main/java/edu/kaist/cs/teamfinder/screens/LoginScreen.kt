@@ -1,4 +1,4 @@
-package edu.kaist.cs.teamfinder
+package edu.kaist.cs.teamfinder.screens
 
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -59,6 +59,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import edu.kaist.cs.teamfinder.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -79,8 +80,8 @@ fun LoginRoute(onLoginSuccess: () -> Unit) {
                 textAlign = TextAlign.Center,
             ),
             modifier = Modifier
-                .padding(top = 50.dp)
-                .fillMaxWidth()
+                    .padding(top = 50.dp)
+                    .fillMaxWidth()
         )
         Text(
             text = "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit, sed do eiusmod tempor",
@@ -93,8 +94,8 @@ fun LoginRoute(onLoginSuccess: () -> Unit) {
                 textAlign = TextAlign.Center,
             ),
             modifier = Modifier
-                .padding(top = 12.dp)
-                .fillMaxWidth()
+                    .padding(top = 12.dp)
+                    .fillMaxWidth()
         )
         Text(
             text = "Email",
@@ -114,8 +115,8 @@ fun LoginRoute(onLoginSuccess: () -> Unit) {
             value = email,
             onValueChange = { email = it },
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp),
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
             shape = RoundedCornerShape(8.dp),
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color(0xFFFFFFFF),
@@ -144,8 +145,8 @@ fun LoginRoute(onLoginSuccess: () -> Unit) {
             value = password,
             onValueChange = { password = it },
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp),
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
             shape = RoundedCornerShape(8.dp),
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color(0xFFFFFFFF),
@@ -166,11 +167,11 @@ fun LoginRoute(onLoginSuccess: () -> Unit) {
             ) {
                 Box(
                     modifier = Modifier
-                        .size(25.dp)
-                        .background(if (checkedState.value) Color(0xFFE6E1FF) else Color.White)
-                        .clickable {
-                            checkedState.value = !checkedState.value
-                        },
+                            .size(25.dp)
+                            .background(if (checkedState.value) Color(0xFFE6E1FF) else Color.White)
+                            .clickable {
+                                checkedState.value = !checkedState.value
+                            },
                 ) {
                     if (checkedState.value)
                         Icon(Icons.Default.Check, contentDescription = "", tint = Color.White)
@@ -209,13 +210,13 @@ fun LoginRoute(onLoginSuccess: () -> Unit) {
                 shape = RoundedCornerShape(size = 6.dp),
                 colors = ButtonDefaults.buttonColors(Color(0xFF130160)),
                 modifier = Modifier
-                    .width(266.dp)
-                    .height(50.dp)
-                    .shadow(
-                        elevation = 62.dp,
-                        spotColor = Color(0x2E99ABC6),
-                        ambientColor = Color(0x2E99ABC6)
-                    )
+                        .width(266.dp)
+                        .height(50.dp)
+                        .shadow(
+                                elevation = 62.dp,
+                                spotColor = Color(0x2E99ABC6),
+                                ambientColor = Color(0x2E99ABC6)
+                        )
 
 
             ) {
@@ -296,13 +297,13 @@ fun GoogleSignInButton(onSignInResult: (Boolean) -> Unit) {
         shape = RoundedCornerShape(size = 6.dp),
         colors = ButtonDefaults.buttonColors(Color(0xFFD6CDFE)),
         modifier = Modifier
-            .width(266.dp)
-            .height(50.dp)
-            .shadow(
-                elevation = 62.dp,
-                spotColor = Color(0x2E99ABC6),
-                ambientColor = Color(0x2E99ABC6)
-            )
+                .width(266.dp)
+                .height(50.dp)
+                .shadow(
+                        elevation = 62.dp,
+                        spotColor = Color(0x2E99ABC6),
+                        ambientColor = Color(0x2E99ABC6)
+                )
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 8.dp),
@@ -312,8 +313,8 @@ fun GoogleSignInButton(onSignInResult: (Boolean) -> Unit) {
                 painter = painterResource(id = R.drawable.google),
                 contentDescription = "Google logo",
                 modifier = Modifier
-                    .size(24.dp)
-                    .padding(end = 8.dp)
+                        .size(24.dp)
+                        .padding(end = 8.dp)
             )
             Text(
                 fontSize = 14.sp,

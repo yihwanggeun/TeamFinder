@@ -1,11 +1,8 @@
-package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
+package edu.kaist.cs.teamfinder.screens
 
-import android.content.Intent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -41,16 +38,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import edu.kaist.cs.teamfinder.LoginRoute
 import edu.kaist.cs.teamfinder.R
-import edu.kaist.cs.teamfinder.User
-import edu.kaist.cs.teamfinder.apiService
-import edu.kaist.cs.teamfinder.mGoogleSignInClient
-import edu.kaist.cs.teamfinder.resultLauncher
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -58,8 +46,8 @@ fun AddDescriptionScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
+                    .padding(16.dp)
+                    .fillMaxWidth()
         ) {
 
             Image(
@@ -84,9 +72,10 @@ fun AddDescriptionScreen() {
                 Image(
                     painter = painterResource(id = R.drawable.sample),
                     contentDescription = "sample",
-                    modifier = Modifier.padding(start = 16.dp, top = 16.dp)
-                        .size(36.dp) // 이미지 크기를 조절하십시오.
-                        .clip(CircleShape)
+                    modifier = Modifier
+                            .padding(start = 16.dp, top = 16.dp)
+                            .size(36.dp) // 이미지 크기를 조절하십시오.
+                            .clip(CircleShape)
 
                 )
                 Column(modifier = Modifier.weight(1f)){
@@ -224,7 +213,8 @@ fun AddDescriptionScreen() {
                 value = project_description,
                 onValueChange = { project_description = it },
                 modifier = Modifier
-                    .fillMaxWidth().height(100.dp),
+                        .fillMaxWidth()
+                        .height(100.dp),
                 shape = RoundedCornerShape(8.dp),
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color(0xFFFFFFFF),
@@ -245,13 +235,13 @@ fun AddDescriptionScreen() {
                     shape = RoundedCornerShape(size = 6.dp),
                     colors = ButtonDefaults.buttonColors(Color(0xFFD6CDFE)),
                     modifier = Modifier
-                        .width(266.dp)
-                        .height(50.dp)
-                        .shadow(
-                            elevation = 62.dp,
-                            spotColor = Color(0x2E99ABC6),
-                            ambientColor = Color(0x2E99ABC6)
-                        )
+                            .width(266.dp)
+                            .height(50.dp)
+                            .shadow(
+                                    elevation = 62.dp,
+                                    spotColor = Color(0x2E99ABC6),
+                                    ambientColor = Color(0x2E99ABC6)
+                            )
 
 
                 ) {

@@ -1,8 +1,7 @@
-package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
+package edu.kaist.cs.teamfinder.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,7 +19,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
@@ -34,20 +32,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.gson.Gson
-import edu.kaist.cs.teamfinder.Globals
-import edu.kaist.cs.teamfinder.LoginRoute
 import edu.kaist.cs.teamfinder.R
-import edu.kaist.cs.teamfinder.User
-import edu.kaist.cs.teamfinder.apiService
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 @Composable
 fun ProjectDetailScreen(projectName: String?) {
-    Box(modifier = Modifier.fillMaxSize().background(Color(0xFFF9F9F9))) {
+    Box(modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFF9F9F9))) {
 
         // Big Box including Image
 
@@ -58,10 +49,10 @@ fun ProjectDetailScreen(projectName: String?) {
 
                 Box(
                     modifier = Modifier
-                        .padding(top = 50.dp)
-                        .fillMaxWidth()
-                        .height(114.dp)
-                        .background(Color(0xFFF3F2F2)),
+                            .padding(top = 50.dp)
+                            .fillMaxWidth()
+                            .height(114.dp)
+                            .background(Color(0xFFF3F2F2)),
                     contentAlignment = Alignment.Center
                 ) {
                     Column() {
@@ -124,17 +115,17 @@ fun ProjectDetailScreen(projectName: String?) {
                 ) {
                     Box(
                         modifier = Modifier
-                            .size(80.dp) // Adjust the size of your image
-                            .clip(CircleShape)
-                            .background(Color(0xFFD6CDFE)),
+                                .size(80.dp) // Adjust the size of your image
+                                .clip(CircleShape)
+                                .background(Color(0xFFD6CDFE)),
                         contentAlignment = Alignment.Center
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.apple),
                             contentDescription = "apple",
                             modifier = Modifier
-                                .size(24.dp) // Adjust the size of your image
-                                .clip(CircleShape)
+                                    .size(24.dp) // Adjust the size of your image
+                                    .clip(CircleShape)
                         )
                     }
                 }
@@ -210,13 +201,13 @@ fun ProjectDetailScreen(projectName: String?) {
                     shape = RoundedCornerShape(size = 6.dp),
                     colors = ButtonDefaults.buttonColors(Color(0xFF130160)),
                     modifier = Modifier
-                        .width(266.dp)
-                        .height(50.dp)
-                        .shadow(
-                            elevation = 62.dp,
-                            spotColor = Color(0x2E99ABC6),
-                            ambientColor = Color(0x2E99ABC6)
-                        )
+                            .width(266.dp)
+                            .height(50.dp)
+                            .shadow(
+                                    elevation = 62.dp,
+                                    spotColor = Color(0x2E99ABC6),
+                                    ambientColor = Color(0x2E99ABC6)
+                            )
 
 
                 ) {

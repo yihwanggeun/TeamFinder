@@ -12,12 +12,12 @@ data class Engineer(
     val imageResourceId: Int
 )
 
-data class Project(
-    val projectName: String,
-    val projectImageResourceId: Int,
-    val projectType: String,
-    val projectMax: Int,
-    val projectTag: ArrayList<String>
+data class Project( // id, name, description, require, projecttype, fullname, tag
+        val projectName: String,
+        val projectImageResourceId: Int,
+        val projectType: String,
+        val projectMax: Int,
+        val projectTag: ArrayList<String>
 )
 
 data class Feed(

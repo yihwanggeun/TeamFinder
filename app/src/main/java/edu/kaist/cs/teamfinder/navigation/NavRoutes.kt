@@ -1,18 +1,9 @@
 package edu.kaist.cs.teamfinder.navigation
 
-object NavRoutes {
-    val Home = Screen("home")
-    val Feed = Screen("feed")
-    val Add = Screen("add")
-    val Chat = Screen("chat")
-    val Saved = Screen("saved")
-
-    class Screen(val route: String) {
-        // You can define additional arguments here for passing arguments between screens
-        // 예를 들어 아래와 같이 정의할 수 있습니다.
-
-        // 게시글의 ID를 argument로 받는 Details 화면의 경우:
-        // val Details = Screen("details/{postId}")
-        // fun Details.withArgs(postId: String): String = "details/$postId"
-    }
+sealed class NavRoutes(val route: String) {
+    object Home : NavRoutes("home")
+    object Feed : NavRoutes("feed")
+    object Add : NavRoutes("add")
+    object Chat : NavRoutes("chat")
+    object Save : NavRoutes("save")
 }

@@ -34,7 +34,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import edu.kaist.cs.teamfinder.navigation.NavBarItems
+import edu.kaist.cs.teamfinder.navigation.BottomNavBarItems
 import edu.kaist.cs.teamfinder.navigation.NavRoutes
 import edu.kaist.cs.teamfinder.screens.AddScreen
 import edu.kaist.cs.teamfinder.screens.ChatScreen
@@ -120,17 +120,17 @@ fun BottomNavigationBar(navController: NavHostController) {
     val currentDestination = navBackStackEntry?.destination
 
     NavigationBar(containerColor = Color(0xFFFFFFFF),modifier = Modifier.height(72.dp)) {
-        NavBarItems.NavBarItems.forEachIndexed { _, item ->
+        BottomNavBarItems.NavBarItems.forEachIndexed { _, item ->
             NavigationBarItem(
-                icon = {
-                    Image(
-                        painter = painterResource(id = item.icon),
-                        contentDescription = item.name,
-                        modifier = Modifier.size(24.dp),
-                        contentScale = ContentScale.Fit,
-                    )
-                },
-                colors = NavigationBarItemDefaults.colors(
+                    icon = {
+                        Image(
+                                painter = painterResource(id = item.icon),
+                                contentDescription = item.name,
+                                modifier = Modifier.size(24.dp),
+                                contentScale = ContentScale.Fit,
+                        )
+                    },
+                    colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = Color.Green,
                     indicatorColor = Color.White
                 ),

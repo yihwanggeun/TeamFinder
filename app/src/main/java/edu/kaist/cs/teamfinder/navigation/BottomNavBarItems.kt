@@ -2,19 +2,19 @@ package edu.kaist.cs.teamfinder.navigation
 
 import edu.kaist.cs.teamfinder.R
 
-object NavBarItems {
+object BottomNavBarItems {
 
     val NavBarItems = listOf(
-        NavBarItem(
-            name = "Home",
-            route = "home",
-            icon = R.drawable.home,
-        ),
-        NavBarItem(
-            name = "Project",
-            route = "project",
-            icon = R.drawable.connection,
-        ),
+            NavBarItem(
+                    name = "Home",
+                    route = "home",
+                    icon = R.drawable.home,
+            ),
+            NavBarItem(
+                    name = "Feed",
+                    route = "feed",
+                    icon = R.drawable.connection,
+            ),
         NavBarItem(
             name = "Add",
             route = "add",

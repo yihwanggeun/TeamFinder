@@ -32,8 +32,8 @@ class StreamChatInitializer : Initializer<Unit> {
             .build()
 
         val user = User(
-            id = "TestUser1_d1e79551-e584-4791-a505-1fd9da010980",
-            name = "TestUser1",
+            id = "test",
+            name = "test",
             image = "https://pacekitten.com/200/300"
         )
 

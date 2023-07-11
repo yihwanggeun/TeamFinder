@@ -42,6 +42,7 @@ import edu.kaist.cs.teamfinder.R
 import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.ApplyScreen
 import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.ProjectDescription
 import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.ProjectDetailScreen
+import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.ProjectList
 import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.TopRateEngineer
 import edu.kaist.cs.teamfinder.navbariconpack.Home
 import edu.kaist.cs.teamfinder.navbariconpack.NavBarIconPack

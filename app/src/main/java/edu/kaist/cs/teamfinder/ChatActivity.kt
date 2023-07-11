@@ -30,15 +30,15 @@ class ChatActivity : ComponentActivity() {
         )
 
         // 2 - Set up the client for API calls and with the plugin for offline storage
-        val client = ChatClient.Builder("48wnjyssauk6", applicationContext)
+        val client = ChatClient.Builder("t2gj4tqh7c97", applicationContext)
             .withPlugin(offlinePluginFactory)
             .logLevel(ChatLogLevel.ALL) // Set to NOTHING in prod
             .build()
 
         // 3 - Authenticate and connect the user
         val user = User(
-            id = "TestUser1_d1e79551-e584-4791-a505-1fd9da010980",
-            name = "TestUser1",
+            id = "test",
+            name = "test",
             image = "https://bit.ly/2TIt8NR"
         )
 

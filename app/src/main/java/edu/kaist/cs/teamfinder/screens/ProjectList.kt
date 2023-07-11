@@ -1,4 +1,4 @@
-package edu.kaist.cs.teamfinder.screens
+package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

@@ -1,4 +1,4 @@
-package edu.kaist.cs.teamfinder
+package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder
 
 object NavRoutes {
     val Home = Screen("home")

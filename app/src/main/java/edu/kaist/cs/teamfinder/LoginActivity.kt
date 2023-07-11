@@ -33,7 +33,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -93,7 +92,7 @@ lateinit var mGoogleSignInClient: GoogleSignInClient
 lateinit var resultLauncher : ActivityResultLauncher<Intent>
 var gson = GsonBuilder().setLenient().create()
 val retrofit = Retrofit.Builder()
-    .baseUrl("https://52a9-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
+    .baseUrl("https://0bfb-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
     .addConverterFactory(ScalarsConverterFactory.create())
     .addConverterFactory(GsonConverterFactory.create(gson)) // 문자열 응답을 처리하기 위해 ScalarsConverterFactory를 사용합니다
     .build()
@@ -135,9 +134,9 @@ class LoginActivity : ComponentActivity() {
                         composable(route = LoginRoute.Home.name) {
                             HomeScreen()
                         }
-                        composable(route = LoginRoute.MainScreen.name) {
-                            MainScreen()
-                        }
+//                        composable(route = LoginRoute.MainScreen.name) {
+//                            MainScreen()
+//                        }
                     }
                 }
             }
@@ -373,7 +372,10 @@ fun TestLogin(navController: NavHostController) {
                         println(userData)
                         navController.navigate(LoginRoute.CreateAccount.name)
                         apiService.createUser(userData).enqueue(object : Callback<String> {
-                            override fun onResponse(call: Call<String>, response: Response<String>) {
+                            override fun onResponse(
+                                call: Call<String>,
+                                response: Response<String>
+                            ) {
                                 println(response)
                                 if (response.isSuccessful) {
                                     // User successfully created on the server

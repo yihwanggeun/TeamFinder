@@ -62,7 +62,7 @@ import com.google.android.gms.tasks.Task
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen() {
+fun LoginRoute(onLoginSuccess: () -> Unit) {
     val navController = rememberNavController()
 
     Column(
@@ -200,6 +200,11 @@ fun LoginScreen() {
             Button(
                 onClick = {
 //                    loginViewModel.login(email, password)
+                    val loginSuccess = true
+
+                    if (loginSuccess) {
+                        onLoginSuccess()
+                    }
                 },
                 shape = RoundedCornerShape(size = 6.dp),
                 colors = ButtonDefaults.buttonColors(Color(0xFF130160)),

@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.sp
 //import androidx.compose.runtime.rememberCoroutineScope
 
 @Composable
-fun WelcomeScreen(onContinueClicked: () -> Unit) {
+fun WelcomeScreen(onContinueClick: () -> Unit) {
 
     Surface {
         Column {
@@ -119,7 +119,7 @@ fun WelcomeScreen(onContinueClicked: () -> Unit) {
                 horizontalArrangement = Arrangement.End
             ) {
 //            val coroutineScope = rememberCoroutineScope()
-                IconButton(onClick = onContinueClicked) {
+                IconButton(onClick = onContinueClick) {
                     Image(
                         painter = painterResource(id = R.drawable.login2),
                         contentDescription = "",
@@ -138,6 +138,6 @@ fun WelcomeScreen(onContinueClicked: () -> Unit) {
 @Composable
 fun WelcomeScreenPreview() {
     WelcomeScreen(
-        onContinueClicked = { }
+        onContinueClick = { }
     )
 }

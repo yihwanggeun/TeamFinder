@@ -1,4 +1,4 @@
-package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder
+package edu.kaist.cs.teamfinder
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -8,16 +8,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import edu.kaist.cs.teamfinder.LeafScreen
-import edu.kaist.cs.teamfinder.RootScreen
 import edu.kaist.cs.teamfinder.screens.AddScreen
 import edu.kaist.cs.teamfinder.screens.ChatScreen
 import edu.kaist.cs.teamfinder.screens.HomeScreen
+import edu.kaist.cs.teamfinder.screens.ProfileScreen
 import edu.kaist.cs.teamfinder.screens.ProjectScreen
 import edu.kaist.cs.teamfinder.screens.SavedScreen
 
 @Composable
-fun TeamFinderNavHost(
+fun SetupNavGraphBottomBar(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -26,17 +25,23 @@ fun TeamFinderNavHost(
         startDestination = RootScreen.Home.route,
         modifier = modifier
     ) {
-        HomeGraph(navController)
-        ProjectGraph(navController)
-        AddGraph(navController)
-        ChatGraph(navController)
-        SavedGraph(navController)
+        addHomeGraph(navController)
+        addProjectGraph(navController)
+        addAddGraph(navController)
+        addChatGraph(navController)
+        addSavedGraph(navController)
 //        Composable(route = NavRoutes.Chat.route) {
 //            Chat(
 //                onChannelClick =  { channel ->
 //                    navController.navigateSingleTopToChannel(channel)
 //                }
 //            )
+//        }
+//        composable(
+//            "profile?userId={userId}",
+//            arguments = listOf(navArgument("userId") { defaultValue = "user1234" })
+//        ) { backStackEntry ->
+//            Profile(navController, backStackEntry.arguments?.getString("userId"))
 //        }
 // TODO: https://developer.android.com/codelabs/jetpack-compose-navigation?hl=ko#8
 //        https://developer.android.com/guide/navigation/navigation-type-safety?hl=ko
@@ -52,22 +57,35 @@ private fun NavHostController.navigateSingleTopToChannel(channelId: String) {
     this.navigateSingleTopTo("${RootScreen.Chat.route}/$channelId")
 }
 
-private fun NavGraphBuilder.HomeGraph(navController: NavController) {
+fun NavGraphBuilder.addHomeGraph(navController: NavController) {
     navigation(
         route = RootScreen.Home.route,
         startDestination = LeafScreen.Home.route
     ) {
         showHome(navController)
+        composable(route = LeafScreen.Profile.route) {
+            ProfileScreen(
+                onNavigateToFriends = { navController.navigate("") }
+            )
+        }
     }
 }
 
-private fun NavGraphBuilder.showHome(navController: NavController) {
+fun NavGraphBuilder.showHome(navController: NavController) {
     composable(route = LeafScreen.Home.route) {
         HomeScreen()
     }
 }
 
-private fun NavGraphBuilder.ProjectGraph(navController: NavController) {
+fun NavGraphBuilder.showProfile(navController: NavController) {
+    composable(route = LeafScreen.Profile.route) {
+        ProfileScreen(
+            onNavigateToFriends = { navController.navigate(LeafScreen.Home.route) }
+        )
+    }
+}
+
+fun NavGraphBuilder.addProjectGraph(navController: NavController) {
     navigation(
         route = RootScreen.Project.route,
         startDestination = LeafScreen.Project.route
@@ -76,13 +94,13 @@ private fun NavGraphBuilder.ProjectGraph(navController: NavController) {
     }
 }
 
-private fun NavGraphBuilder.showProject(navController: NavController) {
+fun NavGraphBuilder.showProject(navController: NavController) {
     composable(route = LeafScreen.Project.route) {
         ProjectScreen()
     }
 }
 
-private fun NavGraphBuilder.AddGraph(navController: NavController) {
+private fun NavGraphBuilder.addAddGraph(navController: NavController) {
     navigation(
         route = RootScreen.Project.route,
         startDestination = LeafScreen.Project.route
@@ -97,7 +115,7 @@ private fun NavGraphBuilder.showAdd(navController: NavController) {
     }
 }
 
-private fun NavGraphBuilder.ChatGraph(navController: NavController) {
+fun NavGraphBuilder.addChatGraph(navController: NavController) {
     navigation(
         route = RootScreen.Chat.route,
         startDestination = LeafScreen.Chat.route
@@ -106,13 +124,13 @@ private fun NavGraphBuilder.ChatGraph(navController: NavController) {
     }
 }
 
-private fun NavGraphBuilder.showChat(navController: NavController) {
+fun NavGraphBuilder.showChat(navController: NavController) {
     composable(route = LeafScreen.Chat.route) {
         ChatScreen()
     }
 }
 
-private fun NavGraphBuilder.SavedGraph(navController: NavController) {
+fun NavGraphBuilder.addSavedGraph(navController: NavController) {
     navigation(
         route = RootScreen.Saved.route,
         startDestination = LeafScreen.Saved.route
@@ -121,16 +139,16 @@ private fun NavGraphBuilder.SavedGraph(navController: NavController) {
     }
 }
 
-private fun NavGraphBuilder.showSaved(navController: NavController) {
+fun NavGraphBuilder.showSaved(navController: NavController) {
     composable(route = LeafScreen.Saved.route) {
         SavedScreen()
     }
 }
 
-private fun NavGraphBuilder.LoginGraph(navController: NavController) {
+fun NavGraphBuilder.addLoginGraph(navController: NavController) {
     navigation(
-        route = RootScreen.Project.route,
-        startDestination = LeafScreen.Project.route
+        route = RootScreen.Login.route,
+        startDestination = LeafScreen.Welcome.route
     ) {
         showProject(navController)
     }

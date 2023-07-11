@@ -1,4 +1,5 @@
 package edu.kaist.cs.teamfinder
+import com.google.gson.annotations.SerializedName
 
 data class User(
     val email: String?,
@@ -12,13 +13,36 @@ data class Engineer(
     val imageResourceId: Int
 )
 
+
 data class Project(
+    @SerializedName("p_name")
     val projectName: String,
-    val projectImageResourceId: Int,
+
+    @SerializedName("p_description")
+    val projectDescription: String,
+
+    @SerializedName("p_require")
+    val projectRequire: String,
+
+    @SerializedName("p_type")
     val projectType: String,
-    val projectMax: Int,
-    val projectTag: ArrayList<String>
+
+    @SerializedName("fullname")
+    val fullname: String,
+
+    @SerializedName("front")
+    val front: String,
+
+    @SerializedName("back")
+    val back: String,
+
+    @SerializedName("max")
+    val max: Int,
+
+    @SerializedName("current")
+    val current: Int,
 )
+
 
 data class Feed(
     val name: String,

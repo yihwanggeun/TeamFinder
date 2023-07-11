@@ -2,6 +2,7 @@ package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -53,9 +54,11 @@ import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 @Composable
 fun ProjectList(
     projectList: List<Project>,
-    onProjectListClick: (Project) -> Unit
+    onProjectListClick: (Project) -> Unit,
+    onWebProjectClick: ()-> Unit
 ) {
     val navController = rememberNavController()
+    println(projectList)
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
@@ -102,6 +105,7 @@ fun ProjectList(
                 modifier = Modifier.padding(start = 16.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
+            /*
             val engineerList = listOf(
                 Engineer("이황근", R.drawable.sample),
                 Engineer("이황근", R.drawable.sample),
@@ -114,6 +118,8 @@ fun ProjectList(
                 // 기타 기술자 추가
             )
             TopRateEngineer(engineerList)
+            */
+
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "Find Your Job",
@@ -165,7 +171,8 @@ fun ProjectList(
                                 fontFamily = FontFamily(Font(R.font.dmsans)),
                                 fontWeight = FontWeight(400),
                                 color = Color(0xFF0D0140),
-                            )
+                            ),
+
                         )
 
 
@@ -180,7 +187,7 @@ fun ProjectList(
                             .background(
                                 color = Color(0xFFBEAFFE),
                                 shape = RoundedCornerShape(size = 6.dp)
-                            ),
+                            ).clickable{ onWebProjectClick()},
 
                         ) {
                         Column(
@@ -279,13 +286,13 @@ fun ProjectList(
                                         .size(60.dp) // 이미지 크기를 조절하십시오.
                                         .padding(start = 16.dp, top = 16.dp)
                                         .clip(CircleShape)
-                                        .background(Color(0xFFD6CDFE))
+                                        .background(Color(0xFFF9F9F9))
                                 ) {
                                     Image(
-                                        painter = painterResource(id = project.projectImageResourceId),
+                                        painter = painterResource(id = R.drawable.react),
                                         contentDescription = project.projectName,
                                         modifier = Modifier
-                                            .size(24.dp) // 이미지 크기를 조절하십시오.
+                                            .size(48.dp) // 이미지 크기를 조절하십시오.
                                             .clip(CircleShape)
                                             .align(Alignment.Center)
 
@@ -294,7 +301,7 @@ fun ProjectList(
                                 }
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
-                                        text = "Schedule App Using Chat GPT to Improve",
+                                        text = project.projectName,
                                         style = TextStyle(
                                             fontSize = 14.sp,
                                             fontFamily = FontFamily(Font(R.font.dmsans)),
@@ -304,7 +311,7 @@ fun ProjectList(
                                         modifier = Modifier.padding(start = 16.dp, top = 20.dp)
                                     )
                                     Text(
-                                        text = "Web Project",
+                                        text = project.projectType,
                                         style = TextStyle(
                                             fontSize = 12.sp,
                                             fontFamily = FontFamily(Font(R.font.dmsans)),
@@ -338,7 +345,7 @@ fun ProjectList(
                                             fontFamily = FontFamily(Font(R.font.dmsansbold))
                                         )
                                     ) {
-                                        append("1명 / ")
+                                        append(project.current.toString() + "명 / ")
                                     }
                                     withStyle(
                                         style = SpanStyle(
@@ -347,7 +354,7 @@ fun ProjectList(
                                             textDecoration = TextDecoration.Underline
                                         )
                                     ) {
-                                        append("4명\n")
+                                        append(project.max.toString() + "명\n")
                                     }
                                 }
 
@@ -376,7 +383,7 @@ fun ProjectList(
                                                 contentAlignment = Alignment.CenterStart // 왼쪽 정렬
                                             ) {
                                                 Text(
-                                                    text = "Django Developer",
+                                                    text = project.front + " Developer",
                                                     style = TextStyle(
                                                         fontSize = 10.sp,
                                                         fontFamily = FontFamily(Font(R.font.dmsans)),
@@ -400,7 +407,7 @@ fun ProjectList(
                                                 contentAlignment = Alignment.CenterStart // 왼쪽 정렬
                                             ) {
                                                 Text(
-                                                    text = "Swift Developer",
+                                                    text = project.back + " Developer",
                                                     style = TextStyle(
                                                         fontSize = 10.sp,
                                                         fontFamily = FontFamily(Font(R.font.dmsans)),
@@ -473,6 +480,7 @@ fun ProjectList(
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun ProjectView() {
@@ -480,15 +488,18 @@ fun ProjectView() {
 
         val projectTag:ArrayList<String> = arrayListOf("React Native","Node Js")
         val projectList = listOf(
-            Project("MadCamp Project",R.drawable.apple,"Web Project",4, projectTag),
-            Project("MadCamp Project",R.drawable.apple,"Web Project",4, projectTag),
-            Project("MadCamp Project",R.drawable.apple,"Web Project",4, projectTag),
-            Project("MadCamp Project",R.drawable.apple,"Web Project",4, projectTag),
-            Project("MadCamp Project",R.drawable.apple,"Web Project",4, projectTag),
-            Project("MadCamp Project",R.drawable.apple,"Web Project",4, projectTag),
-            Project("MadCamp Project",R.drawable.apple,"Web Project",4, projectTag)
+            Project( "Schedule App Using Chat GPT", "이 프로젝트는 Chat GPT를 사용한 프로젝트입니다...", "4년제 대학교 졸업자 우대\nReact Native 개발 경험 1년 이상...", "App Project", "홍길동", "React Native", "Django", 4, 1),
+        Project( "AI Research Project", "AI 연구 프로젝트...", "AI 관련 학위 소지자 우대\nPython 경험 2년 이상...", "Research Project", "이몽룡", "Python", "Python", 5, 2),
+        Project( "E-Commerce Web App", "전자상거래 웹 앱 프로젝트...", "JavaScript, HTML, CSS 경험자 우대...", "Web App Project", "성춘향", "React", "Node.js", 6, 3),
+        Project( "Mobile Game Development", "모바일 게임 개발 프로젝트...", "Unity 사용 경험자 우대...", "Game Project", "김삿갓", "Unity", "C#", 5, 2),
+        Project( "Data Science Project", "데이터 과학 프로젝트...", "데이터 과학 관련 학위 소지자 우대\nPython, R 경험자 우대...", "Research Project", "박몽룡", "Python", "R", 3, 1),
+        Project( "Augmented Reality App", "증강현실 앱 개발 프로젝트...", "Unity, C# 경험자 우대...", "App Project", "김철수", "Unity", "C#", 4, 2),
+        Project( "Healthcare App", "헬스케어 앱 개발 프로젝트...", "React Native 경험자 우대...", "App Project", "이영희", "React Native", "Django", 5, 2),
+        Project( "Blockchain Project", "블록체인 프로젝트...", "블록체인 관련 경험자 우대...", "Blockchain Project", "최철호", "Ethereum", "Solidity", 3, 1),
+        Project( "Machine Learning Project", "머신러닝 프로젝트...", "머신러닝 관련 학위 소지자 우대\nPython, TensorFlow 경험자 우대...", "Research Project", "장보고", "Python", "TensorFlow", 4, 2),
+        Project( "IoT Development", "IoT 개발 프로젝트...", "IoT 개발 경험자 우대...", "IoT Project", "이이", "Python", "Node.js", 6, 3)
             // 기타 기술자 추가
         )
-        ProjectList(projectList,onProjectListClick = {})
+        ProjectList(projectList,onProjectListClick = {}, onWebProjectClick = {})
     }
 }

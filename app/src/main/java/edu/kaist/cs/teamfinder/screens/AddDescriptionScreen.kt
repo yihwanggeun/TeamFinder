@@ -1,8 +1,10 @@
 package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
 
+import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -14,8 +16,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -32,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -41,8 +46,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.gson.GsonBuilder
+import edu.kaist.cs.teamfinder.ApiService
+import edu.kaist.cs.teamfinder.Globals
 import edu.kaist.cs.teamfinder.LoginRoute
+import edu.kaist.cs.teamfinder.Project
 import edu.kaist.cs.teamfinder.R
 import edu.kaist.cs.teamfinder.User
 import edu.kaist.cs.teamfinder.apiService
@@ -51,15 +62,20 @@ import edu.kaist.cs.teamfinder.resultLauncher
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddDescriptionScreen() {
+    val context = LocalContext.current
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
                 .padding(16.dp)
-                .fillMaxWidth()
+                .fillMaxWidth().verticalScroll(rememberScrollState())
+                .height(3000.dp)
         ) {
 
             Image(
@@ -163,7 +179,7 @@ fun AddDescriptionScreen() {
                 mutableStateOf("")
             }
             TextField(
-                value = project_type,
+                value = Globals.project_type,
                 onValueChange = { project_type = it },
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -192,7 +208,7 @@ fun AddDescriptionScreen() {
                 mutableStateOf("")
             }
             TextField(
-                value = framework,
+                value = Globals.front + " ," + Globals.back,
                 onValueChange = { framework = it },
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -267,8 +283,15 @@ fun AddDescriptionScreen() {
                                 fontWeight = FontWeight(700),
                                 color = Color(0xFFFFFFFF),
                                 letterSpacing = 10.sp,
-                            )
+                            ),
+                            modifier = Modifier.clickable {
+                               val project = Project(project_name, project_description,"1",
+                               Globals.project_type,Globals.globalUser,Globals.front,Globals.back,4,0)
+                                println(project)
+                                createproject(project,context)
+                            }
                         )
+
 
                     }
                 }
@@ -278,8 +301,38 @@ fun AddDescriptionScreen() {
 
 }
 
+fun createproject(project : Project,ctx : Context){
+    var gson = GsonBuilder().setLenient().create()
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://75fb-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson)) // 문자열 응답을 처리하기 위해 ScalarsConverterFactory를 사용합니다
+        .build()
+
+    val apiService = retrofit.create(ApiService::class.java)
+    val call = apiService.createProject(project)
+
+    call.enqueue(object: Callback<Project> {
+        override fun onResponse(call: Call<Project>, response: Response<Project>) {
+            if (response.isSuccessful) {
+                println("SUCESS")
+                // Project was successfully created on the server.
+                // The server's response can be obtained from the 'response' object.
+            }
+        }
+
+        override fun onFailure(call: Call<Project>, t: Throwable) {
+            println("FAIL")
+            // An error occurred while trying to communicate with the server.
+            // The error can be obtained from the 't' object.
+        }
+    })
+
+
+}
 @Preview
 @Composable
 fun AddDescriptionScreenPreview(){
+    val navController = rememberNavController()
     AddDescriptionScreen()
 }

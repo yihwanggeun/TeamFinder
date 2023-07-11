@@ -1,4 +1,4 @@
-package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
+package edu.kaist.cs.teamfinder.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -76,7 +76,9 @@ fun AddDetailScreen(){
                     )
                     .height(IntrinsicSize.Min)
             ) {
-                Row(modifier = Modifier.padding(16.dp).fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                Row(modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -110,7 +112,9 @@ fun AddDetailScreen(){
                     )
                     .height(IntrinsicSize.Min)
             ) {
-                Row(modifier = Modifier.padding(16.dp).fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                Row(modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -144,7 +148,9 @@ fun AddDetailScreen(){
                     )
                     .height(IntrinsicSize.Min)
             ) {
-                Row(modifier = Modifier.padding(16.dp).fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                Row(modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -178,7 +184,9 @@ fun AddDetailScreen(){
                     )
                     .height(IntrinsicSize.Min)
             ) {
-                Row(modifier = Modifier.padding(16.dp).fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                Row(modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -223,7 +231,9 @@ fun AddDetailScreen(){
                     )
                     .height(IntrinsicSize.Min)
             ) {
-                Row(modifier = Modifier.padding(16.dp).fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                Row(modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -257,7 +267,9 @@ fun AddDetailScreen(){
                     )
                     .height(IntrinsicSize.Min)
             ) {
-                Row(modifier = Modifier.padding(16.dp).fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                Row(modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -291,7 +303,9 @@ fun AddDetailScreen(){
                     )
                     .height(IntrinsicSize.Min)
             ) {
-                Row(modifier = Modifier.padding(16.dp).fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                Row(modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -325,7 +339,9 @@ fun AddDetailScreen(){
                     )
                     .height(IntrinsicSize.Min)
             ) {
-                Row(modifier = Modifier.padding(16.dp).fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                Row(modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))

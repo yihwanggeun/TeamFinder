@@ -92,7 +92,7 @@ lateinit var mGoogleSignInClient: GoogleSignInClient
 lateinit var resultLauncher : ActivityResultLauncher<Intent>
 var gson = GsonBuilder().setLenient().create()
 val retrofit = Retrofit.Builder()
-    .baseUrl("https://0bfb-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
+    .baseUrl("https://0e69-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
     .addConverterFactory(ScalarsConverterFactory.create())
     .addConverterFactory(GsonConverterFactory.create(gson)) // 문자열 응답을 처리하기 위해 ScalarsConverterFactory를 사용합니다
     .build()
@@ -968,18 +968,4 @@ fun PreviewTestCreateAccountScreen() {
         val navController = rememberNavController()
         CreateAccount(navController = navController)
     }
-}
-
-interface ApiService {
-    @GET("/") // 실제 엔드포인트에 맞게 경로를 지정해야 합니다
-    fun getHelloKaist(): Call<String> // 데이터를 가져오는 GET 요청을 수행하기 위한 메서드
-
-    @POST("/createUser") // Replace with the actual endpoint path to create a user
-    fun createUser(@Body user: User): Call<String>
-
-    @GET("/checkUser")
-    fun checkUser(
-        @Query("email") email: String,
-        @Query("password") password: String
-    ): Call<ResponseBody>
 }

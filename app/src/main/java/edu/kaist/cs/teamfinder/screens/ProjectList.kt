@@ -44,6 +44,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
+import edu.kaist.cs.teamfinder.Globals
 import edu.kaist.cs.teamfinder.Project
 import edu.kaist.cs.teamfinder.R
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
@@ -73,11 +74,11 @@ fun ProjectList(
             ) {
                 IconButton(onClick = { }) {
                     Image(
-                        painter = painterResource(id = R.drawable.sample_image),
+                        painter = painterResource(id = R.drawable.sample),
                         contentDescription = "Google logo",
                         modifier = Modifier
                             .width(50.dp)
-                            .height(50.dp)
+                            .height(50.dp).clip(CircleShape)
                     )
                 }
             }

@@ -99,6 +99,8 @@ class LoginActivity : ComponentActivity() {
         private const val RC_SIGN_IN = 1001
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+        println(R.drawable.sample2)
+        println(R.drawable.sample3)
         super.onCreate(savedInstanceState)
         setResultSignUp()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

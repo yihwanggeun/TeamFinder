@@ -41,6 +41,8 @@ ___
 - Node.js에 Get요청을 하여 모든 프로젝트의 정보를 가져오고 MySQL의 WHERE 문을 이용하여 필터링을 진행하였습니다.
 
 ### TAB 2 - Feed
+<img src="https://github.com/yihwanggeun/TeamFinder/assets/86469551/85872bb1-c763-4aee-bd65-994d9a10ad67" width="250" height="500"/>
+
 
 ### features
 
@@ -51,6 +53,10 @@ ___
 ---
 
 ### TAB 3 - Add
+<img src="https://github.com/yihwanggeun/TeamFinder/assets/86469551/472fb84a-6c0f-4137-a02d-e9b016648e22" width="250" height="500"/>
+<img src="https://github.com/yihwanggeun/TeamFinder/assets/86469551/97cd850e-b1d1-4239-88a3-6e7138095a63" width="250" height="500"/>
+<img src="https://github.com/yihwanggeun/TeamFinder/assets/86469551/f265a697-0bb8-45e9-a9be-07df589e6480" width="250" height="500"/>
+
 
 ### features
 
@@ -60,6 +66,8 @@ ___
 ---
 
 ### TAB 4 - Chat
+<img src="https://github.com/yihwanggeun/TeamFinder/assets/86469551/9237b4cd-62d9-4fdc-ae9e-706b35733f97" width="250" height="500"/>
+
 
 ### features
 
@@ -68,10 +76,12 @@ ___
 
 ###
 
-- Stream.IO의 Jetpack Compose Chat Messaging SDK를 이용하여 구현했습니다. https://getstream.io/chat/sdk/compose/
+- ![Stream.IO](https://getstream.io/chat/sdk/compose/)의 Jetpack Compose Chat Messaging SDK를 이용하여 구현했습니다. 
 
 ---
 
 ### TAB 5 - Saved
+<img src="https://github.com/yihwanggeun/TeamFinder/assets/86469551/60861bc8-240a-446a-8d52-299bfab8b749" width="250" height="500"/>
 
 ### features
+ - UI 구현

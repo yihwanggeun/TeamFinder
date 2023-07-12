@@ -130,9 +130,9 @@ class LoginActivity : ComponentActivity() {
                         composable(route = LoginRoute.Home.name) {
                             HomeScreen()
                         }
-                        composable(route = LoginRoute.MainScreen.name) {
-                            MainScreen()
-                        }
+//                        composable(route = LoginRoute.MainScreen.name) {
+//                            MainScreen()
+//                        }
                     }
                 }
             }
@@ -186,7 +186,7 @@ fun TestLogin(navController: NavHostController) {
                     .fillMaxWidth()
             )
             Text(
-                text = "Find the project team you desire, and unfold your future\nWe, TeamFinder, will assist you.",
+                text = "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit, sed do eiusmod tempor",
                 style = TextStyle(
                     fontSize = 12.sp,
                     lineHeight = 19.2.sp,
@@ -317,21 +317,14 @@ fun TestLogin(navController: NavHostController) {
                                         if (fullname != null) {
                                             Globals.globalUser = fullname
                                         }
-                                        val intent = Intent(context, MainActivity::class.java)
-                                        context.startActivity(intent)
+                                        navController.navigate(LoginRoute.MainScreen.name)
                                     }
-                                } else {
-                                    Log.d("Login api fail", "server response fail")
-                                    val intent = Intent(context, MainActivity::class.java)
-                                    context.startActivity(intent)
                                 }
                             }
 
                             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                                 // 통신 실패 처리
                                 println("Fail")
-                                val intent = Intent(context, MainActivity::class.java)
-                                context.startActivity(intent)
                             }
                         })
 
@@ -387,11 +380,6 @@ fun TestLogin(navController: NavHostController) {
                                     println(response.body())
                                     mGoogleSignInClient.signOut()
                                     // Handle the created user object as needed
-                                    if (createdUser != null) {
-                                        Globals.globalUser = createdUser
-                                    }
-                                    val intent = Intent(context, MainActivity::class.java)
-                                    context.startActivity(intent)
                                 } else {
                                     // Error occurred while creating the user
                                     // Handle the error case
@@ -466,7 +454,11 @@ fun TestLogin(navController: NavHostController) {
                     }
                 )
             }
+
+
         }
+
+
 }
 
 @Composable
@@ -534,7 +526,7 @@ fun Login(name: String, modifier: Modifier = Modifier, navController: NavHostCon
                 horizontalArrangement = Arrangement.Start
             ) {
                 Text(
-                    text = "Explore all the most exciting project roles\nbased on your interest and study major.",
+                    text = "Explore all the most exciting job roles based\non your interest and study major.",
                     fontSize = 15.sp,
                     color = Color(0xFF524B6B),
                     lineHeight = 18.sp
@@ -733,11 +725,10 @@ fun CreateAccount(modifier: Modifier = Modifier, navController: NavHostControlle
                     val familyName = null
                     val givenName = null
                     val displayName = fullname
-                    val photoUrl = R.drawable.sample.toString()
+                    val photoUrl = null
                     val password = password
                     val userData : User = User(email,password, displayName,photoUrl)
-                    Globals.globalUser = fullname
-                    navController.navigate(LoginRoute.MainScreen.name)
+                    //navController.navigate(LoginScreen.CreateAccount.name)
                     apiService.createUser(userData).enqueue(object : Callback<String> {
                         override fun onResponse(call: Call<String>, response: Response<String>) {
                             if (response.isSuccessful) {

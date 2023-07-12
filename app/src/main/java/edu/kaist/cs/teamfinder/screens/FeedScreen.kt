@@ -55,7 +55,7 @@ fun FeedScreen() {
     val context = LocalContext.current
     val feedList = remember { mutableStateListOf<Feed>() }
     getAllFeed(feedList, context)
-    var feedId = 2
+    var feedId = 0
     NavHost(navController = navController, "feedlist") {
         composable("feedlist") {
             FeedList(feedList, onPostClick = { it ->

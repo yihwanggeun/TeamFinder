@@ -226,10 +226,10 @@ fun SavedProjectCard(project: Project) {
                     contentAlignment = Alignment.CenterEnd
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.save2),
+                        painter = painterResource(id = R.drawable.filledsave),
                         contentDescription = "save",
                         modifier = Modifier
-                            .size(24.dp) // 이미지 크기를 조절하십시오.
+                            .size(24.dp)
                     )
                 }
             }

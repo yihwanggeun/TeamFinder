@@ -26,14 +26,52 @@ ___
 <img src="https://github.com/yihwanggeun/TeamFinder/assets/63749140/d8a923ea-321d-41ad-a7f5-b450f4da8376" width="250" height="500"/>
 <img src="https://github.com/yihwanggeun/TeamFinder/assets/63749140/6e73b3af-7539-4994-b1a8-6571d6fab71a" width="250" height="500"/>
 
-### Major features
+### features
 - ***Find Your Project*** 에서 APP, WEB, Software 3종류로 필터링을 진행할 수 있습니다.
 - 필터링 된 창에서는 그 기술을 기반으로 한 프로젝트를 보여줍니다.
-- ***Recently Project List*** 에서는 현재 모집중인 프로젝트의 List를 볼 수 있습니다. 
+- ***Recently Project List*** 에서는 현재 모집중인 프로젝트의 List를 볼 수 있습니다.
 - 여기서 Apply 버튼을 누르게 되면 상세페이지로 넘어가게 됩니다.
 - 상세페이지에서는 더 자세한 내용을 확인할 수 있습니다.
 
 ---
+
 ### 기술 설명
+
 - Navigation Controller를 사용하여 화면 전환을 용이하게 하였습니다.
 - Node.js에 Get요청을 하여 모든 프로젝트의 정보를 가져오고 MySQL의 WHERE 문을 이용하여 필터링을 진행하였습니다.
+
+### TAB 2 - Feed
+
+### features
+
+- 상단에 있는 프로필을 눌러 채팅 채널로 이동할 수 있습니다.
+- 피드를 확인할 수 있습니다.
+- 피드 하단 바를 눌러 피드를 자세히 볼 수 있습니다.
+
+---
+
+### TAB 3 - Add
+
+### features
+
+- 프레임워크와 프로젝트 유형을 선택할 수 있습니다.
+- 프로젝트명, 설명을 입력하고 프로젝트를 등록할 수 있습니다.
+
+---
+
+### TAB 4 - Chat
+
+### features
+
+- 채팅방을 눌러 채팅창으로 이동할 수 있습니다.
+- 메시지 보내기, 공감, 답장 등의 기능을 이용할 수 있습니다.
+
+###
+
+- Stream.IO의 Jetpack Compose Chat Messaging SDK를 이용하여 구현했습니다. https://getstream.io/chat/sdk/compose/
+
+---
+
+### TAB 5 - Saved
+
+### features

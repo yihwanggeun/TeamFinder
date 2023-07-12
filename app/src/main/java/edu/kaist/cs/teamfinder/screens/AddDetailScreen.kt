@@ -35,8 +35,8 @@ fun AddDetailScreen(){
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
+                .padding(16.dp)
+                .fillMaxWidth()
         ) {
 
             Image(
@@ -68,17 +68,17 @@ fun AddDetailScreen(){
             Spacer(modifier = Modifier.height(24.dp))
             Box(
                 modifier = Modifier
-                        .width(400.dp)
-                        .height(70.dp)
-                        .background(
-                                color = Color(0xFFFFFFFF),
-                                shape = RoundedCornerShape(size = 16.dp)
-                        )
-                        .height(IntrinsicSize.Min)
+                    .width(400.dp)
+                    .height(70.dp)
+                    .background(
+                        color = Color(0xFFFFFFFF),
+                        shape = RoundedCornerShape(size = 16.dp)
+                    )
+                    .height(IntrinsicSize.Min)
             ) {
                 Row(modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -104,17 +104,17 @@ fun AddDetailScreen(){
             Spacer(modifier = Modifier.height(24.dp))
             Box(
                 modifier = Modifier
-                        .width(400.dp)
-                        .height(70.dp)
-                        .background(
-                                color = Color(0xFFFFFFFF),
-                                shape = RoundedCornerShape(size = 16.dp)
-                        )
-                        .height(IntrinsicSize.Min)
+                    .width(400.dp)
+                    .height(70.dp)
+                    .background(
+                        color = Color(0xFFFFFFFF),
+                        shape = RoundedCornerShape(size = 16.dp)
+                    )
+                    .height(IntrinsicSize.Min)
             ) {
                 Row(modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -140,17 +140,17 @@ fun AddDetailScreen(){
             Spacer(modifier = Modifier.height(24.dp))
             Box(
                 modifier = Modifier
-                        .width(400.dp)
-                        .height(70.dp)
-                        .background(
-                                color = Color(0xFFFFFFFF),
-                                shape = RoundedCornerShape(size = 16.dp)
-                        )
-                        .height(IntrinsicSize.Min)
+                    .width(400.dp)
+                    .height(70.dp)
+                    .background(
+                        color = Color(0xFFFFFFFF),
+                        shape = RoundedCornerShape(size = 16.dp)
+                    )
+                    .height(IntrinsicSize.Min)
             ) {
                 Row(modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -176,17 +176,17 @@ fun AddDetailScreen(){
             Spacer(modifier = Modifier.height(24.dp))
             Box(
                 modifier = Modifier
-                        .width(400.dp)
-                        .height(70.dp)
-                        .background(
-                                color = Color(0xFFFFFFFF),
-                                shape = RoundedCornerShape(size = 16.dp)
-                        )
-                        .height(IntrinsicSize.Min)
+                    .width(400.dp)
+                    .height(70.dp)
+                    .background(
+                        color = Color(0xFFFFFFFF),
+                        shape = RoundedCornerShape(size = 16.dp)
+                    )
+                    .height(IntrinsicSize.Min)
             ) {
                 Row(modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -223,17 +223,17 @@ fun AddDetailScreen(){
             Spacer(modifier = Modifier.height(24.dp))
             Box(
                 modifier = Modifier
-                        .width(400.dp)
-                        .height(70.dp)
-                        .background(
-                                color = Color(0xFFFFFFFF),
-                                shape = RoundedCornerShape(size = 16.dp)
-                        )
-                        .height(IntrinsicSize.Min)
+                    .width(400.dp)
+                    .height(70.dp)
+                    .background(
+                        color = Color(0xFFFFFFFF),
+                        shape = RoundedCornerShape(size = 16.dp)
+                    )
+                    .height(IntrinsicSize.Min)
             ) {
                 Row(modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -259,17 +259,17 @@ fun AddDetailScreen(){
             Spacer(modifier = Modifier.height(24.dp))
             Box(
                 modifier = Modifier
-                        .width(400.dp)
-                        .height(70.dp)
-                        .background(
-                                color = Color(0xFFFFFFFF),
-                                shape = RoundedCornerShape(size = 16.dp)
-                        )
-                        .height(IntrinsicSize.Min)
+                    .width(400.dp)
+                    .height(70.dp)
+                    .background(
+                        color = Color(0xFFFFFFFF),
+                        shape = RoundedCornerShape(size = 16.dp)
+                    )
+                    .height(IntrinsicSize.Min)
             ) {
                 Row(modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -295,17 +295,17 @@ fun AddDetailScreen(){
             Spacer(modifier = Modifier.height(24.dp))
             Box(
                 modifier = Modifier
-                        .width(400.dp)
-                        .height(70.dp)
-                        .background(
-                                color = Color(0xFFFFFFFF),
-                                shape = RoundedCornerShape(size = 16.dp)
-                        )
-                        .height(IntrinsicSize.Min)
+                    .width(400.dp)
+                    .height(70.dp)
+                    .background(
+                        color = Color(0xFFFFFFFF),
+                        shape = RoundedCornerShape(size = 16.dp)
+                    )
+                    .height(IntrinsicSize.Min)
             ) {
                 Row(modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -331,17 +331,17 @@ fun AddDetailScreen(){
             Spacer(modifier = Modifier.height(24.dp))
             Box(
                 modifier = Modifier
-                        .width(400.dp)
-                        .height(70.dp)
-                        .background(
-                                color = Color(0xFFFFFFFF),
-                                shape = RoundedCornerShape(size = 16.dp)
-                        )
-                        .height(IntrinsicSize.Min)
+                    .width(400.dp)
+                    .height(70.dp)
+                    .background(
+                        color = Color(0xFFFFFFFF),
+                        shape = RoundedCornerShape(size = 16.dp)
+                    )
+                    .height(IntrinsicSize.Min)
             ) {
                 Row(modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
+                    .padding(16.dp)
+                    .fillMaxSize(), verticalAlignment = Alignment.CenterVertically){
 
 
                     Spacer(modifier = Modifier.width(16.dp))

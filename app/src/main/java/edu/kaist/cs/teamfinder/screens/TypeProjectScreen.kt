@@ -83,8 +83,9 @@ fun TypeProjectScreen(frame : String) {
                                 .clip(CircleShape)
                                 .background(Color(0xFFF9F9F9))
                         ) {
+                            val image = getImageResourceForFront(project.front)
                             Image(
-                                painter = painterResource(id = R.drawable.react),
+                                painter = painterResource(id = image),
                                 contentDescription = project.projectName,
                                 modifier = Modifier
                                     .size(48.dp) // 이미지 크기를 조절하십시오.

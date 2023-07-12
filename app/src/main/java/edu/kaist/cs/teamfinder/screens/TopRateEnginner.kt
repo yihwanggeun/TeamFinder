@@ -2,6 +2,7 @@ package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -24,6 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import edu.kaist.cs.teamfinder.CreateAccount
 import edu.kaist.cs.teamfinder.Engineer
@@ -31,8 +33,8 @@ import edu.kaist.cs.teamfinder.R
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 
 @Composable
-fun TopRateEngineer(engineerList: List<Engineer>) {
-    LazyRow (modifier = Modifier.padding(start = 16.dp)){
+fun TopRateEngineer(engineerList: List<Engineer>, navController: NavController,onDevelopClick: () -> Unit) {
+    LazyRow (modifier = Modifier.padding(start = 8.dp)){
         items(engineerList) { engineer ->
             Column (horizontalAlignment = Alignment.CenterHorizontally){
                 Image(
@@ -41,7 +43,7 @@ fun TopRateEngineer(engineerList: List<Engineer>) {
                     modifier = Modifier
                         .size(100.dp) // 이미지 크기를 조절하십시오.
                         .padding(4.dp)
-                        .clip(CircleShape)
+                        .clip(CircleShape).clickable(){onDevelopClick()}
 
                 )
                 Text(
@@ -100,6 +102,6 @@ fun EngineerView() {
             Engineer("이황근", R.drawable.sample)
             // 기타 기술자 추가
         )
-        TopRateEngineer(engineerList)
+        //TopRateEngineer(engineerList)
     }
 }

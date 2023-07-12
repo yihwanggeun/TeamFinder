@@ -175,7 +175,7 @@ fun ProjectDetailScreen(projectName: String) {
                                 painter = painterResource(id = imageResource),
                                 contentDescription = "apple",
                                 modifier = Modifier
-                                    .size(24.dp) // Adjust the size of your image
+                                    .size(48.dp) // Adjust the size of your image
                                     .clip(CircleShape)
                             )
                         }

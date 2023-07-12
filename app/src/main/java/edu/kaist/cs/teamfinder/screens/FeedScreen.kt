@@ -40,8 +40,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.gson.GsonBuilder
 import edu.kaist.cs.teamfinder.ApiService
+import edu.kaist.cs.teamfinder.Engineer
 import edu.kaist.cs.teamfinder.Feed
 import edu.kaist.cs.teamfinder.R
+import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.TopRateEngineer
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -61,146 +63,190 @@ fun FeedScreen() {
             FeedList(feedList, onPostClick = { it ->
                 feedId = it.postId
                 navController.navigate("feedDetail")
-            })
+            },
+                onDevelopClick = {
+                    navController.navigate("chatScreen")
+                })
 
         }
         composable("feedDetail") { FeedDetail(feedNum = feedId) }
+        composable("chatScreen") { ChatScreen()}
     }
 }
 
 @Composable
-fun FeedList(feedList: List<Feed>, onPostClick: (feed: Feed) -> Unit) {
+fun FeedList(feedList: List<Feed>, onPostClick: (feed: Feed) -> Unit, onDevelopClick: () -> Unit) {
+    val navController = rememberNavController()
     Box(modifier = Modifier) {
+        Column() {
+
+
+        Box(
+            modifier = Modifier
+                .padding(16.dp)
+                .width(width = 400.dp)
+                .background(
+                    color = Color(0xFFE7E7E7),
+                    shape = RoundedCornerShape(size = 16.dp)
+                )
+                .height(200.dp)
+        ) {
+            Column {
+                Text(
+                    text = "Developer List",
+                    modifier = Modifier.padding(16.dp),
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontFamily = FontFamily(Font(R.font.dmsans)),
+                        fontWeight = FontWeight(700),
+                    )
+                )
+                val engineerList = listOf(
+                    Engineer("Hwang Geun", R.drawable.sample),
+                    Engineer("Michael Jackson", R.drawable.sample2),
+                    Engineer("전산", R.drawable.sample3),
+                    Engineer("Test", R.drawable.sample),
+                    // 기타 기술자 추가
+                )
+                TopRateEngineer(engineerList, navController,onDevelopClick)
+
+            }
+        }
         LazyColumn {
             items(feedList) { feed ->
-                Box(
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .width(width = 400.dp)
-                        .background(
-                            color = Color(0xFFFFFFFF),
-                            shape = RoundedCornerShape(size = 16.dp)
-                        )
-                        .height(IntrinsicSize.Min)
-                ) {
-                    Column() {
-                        Row(modifier = Modifier.fillMaxWidth()) {
-                            Image(
-                                painter = painterResource(id = R.drawable.sample),
-                                contentDescription = "feed.name",
-                                modifier = Modifier
-                                    .padding(start = 16.dp, top = 16.dp)
-                                    .size(36.dp) // 이미지 크기를 조절하십시오.
-                                    .clip(CircleShape)
+                Column() {
 
+                    Box(
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .width(width = 400.dp)
+                            .background(
+                                color = Color(0xFFFFFFFF),
+                                shape = RoundedCornerShape(size = 16.dp)
                             )
-                            Column(modifier = Modifier.weight(1f)) {
-                                Text(
-                                    text = feed.name ?: "name",
-                                    style = TextStyle(
-                                        fontSize = 14.sp,
-                                        fontFamily = FontFamily(Font(R.font.dmsans)),
-                                        fontWeight = FontWeight(700),
-                                        color = Color(0xFF150B3D),
-                                    ),
-                                    modifier = Modifier.padding(start = 16.dp, top = 16.dp)
-                                )
-                                Text(
-                                    text = "", //feed.date,
-                                    style = TextStyle(
-                                        fontSize = 12.sp,
-                                        fontFamily = FontFamily(Font(R.font.dmsans)),
-                                        fontWeight = FontWeight(400),
-                                        color = Color(0xFF524B6B),
-                                    ),
-                                    modifier = Modifier.padding(start = 16.dp, top = 2.dp),
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis
-                                )
-                            }
-                        }
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Text(
-                            text = feed.title ?: "title",
-                            style = TextStyle(
-                                fontSize = 12.sp,
-                                fontFamily = FontFamily(Font(R.font.dmsans)),
-                                fontWeight = FontWeight(700),
-                                color = Color(0xFF150B3D),
-                            ),
-                            modifier = Modifier.padding(16.dp)
-                        )
-                        //Spacer(modifier = Modifier.height(8.dp))
+                            .height(IntrinsicSize.Min)
+                    ) {
+                        Column() {
 
-                        Text(
-                            text = feed.content ?: "content",
-                            style = TextStyle(
-                                fontSize = 12.sp,
-                                fontFamily = FontFamily(Font(R.font.dmsans)),
-                                fontWeight = FontWeight(400),
-                                color = Color(0xFF524B6B),
-                            ),
-                            modifier = Modifier.padding(16.dp)
-                        )
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(50.dp)
-                                .clip(
-                                    RoundedCornerShape(
-                                        bottomStart = 16.dp,
-                                        bottomEnd = 16.dp
+                            Row(modifier = Modifier.fillMaxWidth()) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.sample),
+                                    contentDescription = "feed.name",
+                                    modifier = Modifier
+                                        .padding(start = 16.dp, top = 16.dp)
+                                        .size(36.dp) // 이미지 크기를 조절하십시오.
+                                        .clip(CircleShape)
+
+                                )
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        text = feed.name ?: "name",
+                                        style = TextStyle(
+                                            fontSize = 14.sp,
+                                            fontFamily = FontFamily(Font(R.font.dmsans)),
+                                            fontWeight = FontWeight(700),
+                                            color = Color(0xFF150B3D),
+                                        ),
+                                        modifier = Modifier.padding(start = 16.dp, top = 16.dp)
                                     )
-                                )// Change to your preferred purple color
-                                .background(color = Color(0xFFD6CDFE))
-                                .clickable {
-                                    onPostClick(feed)
+                                    Text(
+                                        text = "", //feed.date,
+                                        style = TextStyle(
+                                            fontSize = 12.sp,
+                                            fontFamily = FontFamily(Font(R.font.dmsans)),
+                                            fontWeight = FontWeight(400),
+                                            color = Color(0xFF524B6B),
+                                        ),
+                                        modifier = Modifier.padding(start = 16.dp, top = 2.dp),
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
                                 }
+                            }
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Text(
+                                text = feed.title ?: "title",
+                                style = TextStyle(
+                                    fontSize = 12.sp,
+                                    fontFamily = FontFamily(Font(R.font.dmsans)),
+                                    fontWeight = FontWeight(700),
+                                    color = Color(0xFF150B3D),
+                                ),
+                                modifier = Modifier.padding(16.dp)
+                            )
+                            //Spacer(modifier = Modifier.height(8.dp))
 
-                        ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
+                            Text(
+                                text = feed.content ?: "content",
+                                style = TextStyle(
+                                    fontSize = 12.sp,
+                                    fontFamily = FontFamily(Font(R.font.dmsans)),
+                                    fontWeight = FontWeight(400),
+                                    color = Color(0xFF524B6B),
+                                ),
+                                modifier = Modifier.padding(16.dp)
+                            )
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(50.dp)
+                                    .clip(
+                                        RoundedCornerShape(
+                                            bottomStart = 16.dp,
+                                            bottomEnd = 16.dp
+                                        )
+                                    )// Change to your preferred purple color
+                                    .background(color = Color(0xFFD6CDFE))
+                                    .clickable {
+                                        onPostClick(feed)
+                                    }
+
                             ) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.like),
-                                    contentDescription = "like",
-                                    modifier = Modifier
-                                        .padding(start = 16.dp, top = 16.dp)
-                                        .size(18.dp) // 이미지 크기를 조절하십시오.
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.like),
+                                        contentDescription = "like",
+                                        modifier = Modifier
+                                            .padding(start = 16.dp, top = 16.dp)
+                                            .size(18.dp) // 이미지 크기를 조절하십시오.
 
-                                )
-                                Text(
-                                    text = feed.like.toString() ?: "0",
-                                    style = TextStyle(
-                                        fontSize = 10.sp,
-                                        fontFamily = FontFamily(Font(R.font.dmsans)),
-                                        fontWeight = FontWeight(400),
-                                        color = Color(0xFF6F6B80),
-                                    ),
-                                    modifier = Modifier.padding(start = 4.dp, top = 16.dp)
-                                )
-                                Image(
-                                    painter = painterResource(id = R.drawable.comment),
-                                    contentDescription = "like",
-                                    modifier = Modifier
-                                        .padding(start = 16.dp, top = 16.dp)
-                                        .size(18.dp) // 이미지 크기를 조절하십시오.
+                                    )
+                                    Text(
+                                        text = feed.like.toString() ?: "0",
+                                        style = TextStyle(
+                                            fontSize = 10.sp,
+                                            fontFamily = FontFamily(Font(R.font.dmsans)),
+                                            fontWeight = FontWeight(400),
+                                            color = Color(0xFF6F6B80),
+                                        ),
+                                        modifier = Modifier.padding(start = 4.dp, top = 16.dp)
+                                    )
+                                    Image(
+                                        painter = painterResource(id = R.drawable.comment),
+                                        contentDescription = "like",
+                                        modifier = Modifier
+                                            .padding(start = 16.dp, top = 16.dp)
+                                            .size(18.dp) // 이미지 크기를 조절하십시오.
 
-                                )
-                                Text(
-                                    text = feed.comment.toString() ?: "0",
-                                    style = TextStyle(
-                                        fontSize = 10.sp,
-                                        fontFamily = FontFamily(Font(R.font.dmsans)),
-                                        fontWeight = FontWeight(400),
-                                        color = Color(0xFF6F6B80),
-                                    ),
-                                    modifier = Modifier.padding(start = 4.dp, top = 16.dp)
-                                )
+                                    )
+                                    Text(
+                                        text = feed.comment.toString() ?: "0",
+                                        style = TextStyle(
+                                            fontSize = 10.sp,
+                                            fontFamily = FontFamily(Font(R.font.dmsans)),
+                                            fontWeight = FontWeight(400),
+                                            color = Color(0xFF6F6B80),
+                                        ),
+                                        modifier = Modifier.padding(start = 4.dp, top = 16.dp)
+                                    )
+                                }
                             }
                         }
                     }
                 }
+            }
             }
         }
 

@@ -35,5 +35,13 @@ interface ApiService {
     ): Call<ArrayList<Project>>
 
     @GET("/allproject")
-    fun allproject() :Call<ArrayList<Project>>
+    fun allproject(): Call<ArrayList<Project>>
+
+    @GET("/allfeed")
+    fun getAllFeed(): Call<ArrayList<Feed>>
+
+    @GET("/detailfeed")
+    fun detailfeed(
+        @Query("post_id") feedID: Int,
+    ): Call<ArrayList<Feed>>
 }

@@ -12,7 +12,6 @@ import edu.kaist.cs.teamfinder.screens.AddScreen
 import edu.kaist.cs.teamfinder.screens.ChatScreen
 import edu.kaist.cs.teamfinder.screens.HomeScreen
 import edu.kaist.cs.teamfinder.screens.ProfileScreen
-import edu.kaist.cs.teamfinder.screens.ProjectScreen
 import edu.kaist.cs.teamfinder.screens.SavedScreen
 
 @Composable
@@ -96,7 +95,7 @@ fun NavGraphBuilder.addProjectGraph(navController: NavController) {
 
 fun NavGraphBuilder.showProject(navController: NavController) {
     composable(route = LeafScreen.Project.route) {
-        ProjectScreen()
+//        ProjectScreen()
     }
 }
 

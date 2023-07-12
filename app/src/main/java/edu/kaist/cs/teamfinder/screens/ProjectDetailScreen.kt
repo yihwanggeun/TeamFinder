@@ -1,10 +1,9 @@
-package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
+package edu.kaist.cs.teamfinder.screens
 
 import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,9 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
@@ -44,17 +41,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import edu.kaist.cs.teamfinder.ApiService
-import edu.kaist.cs.teamfinder.Globals
-import edu.kaist.cs.teamfinder.LoginRoute
 import edu.kaist.cs.teamfinder.Project
 import edu.kaist.cs.teamfinder.R
-import edu.kaist.cs.teamfinder.User
-import edu.kaist.cs.teamfinder.apiService
-import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -86,7 +76,9 @@ fun ProjectDetailScreen(projectName: String) {
         val part2 = parts[1]
         val part3 = parts[2]
         println(detailproject[0].front)
-        Box(modifier = Modifier.fillMaxSize().background(Color(0xFFF9F9F9))) {
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFF9F9F9))) {
 
             // Big Box including Image
 

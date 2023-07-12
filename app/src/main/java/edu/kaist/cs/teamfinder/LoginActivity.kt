@@ -82,10 +82,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
 
 
 lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -321,14 +317,21 @@ fun TestLogin(navController: NavHostController) {
                                         if (fullname != null) {
                                             Globals.globalUser = fullname
                                         }
-                                        navController.navigate(LoginRoute.MainScreen.name)
+                                        val intent = Intent(context, MainActivity::class.java)
+                                        context.startActivity(intent)
                                     }
+                                } else {
+                                    Log.d("Login api fail", "server response fail")
+                                    val intent = Intent(context, MainActivity::class.java)
+                                    context.startActivity(intent)
                                 }
                             }
 
                             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                                 // 통신 실패 처리
                                 println("Fail")
+                                val intent = Intent(context, MainActivity::class.java)
+                                context.startActivity(intent)
                             }
                         })
 
@@ -384,6 +387,11 @@ fun TestLogin(navController: NavHostController) {
                                     println(response.body())
                                     mGoogleSignInClient.signOut()
                                     // Handle the created user object as needed
+                                    if (createdUser != null) {
+                                        Globals.globalUser = createdUser
+                                    }
+                                    val intent = Intent(context, MainActivity::class.java)
+                                    context.startActivity(intent)
                                 } else {
                                     // Error occurred while creating the user
                                     // Handle the error case
@@ -458,20 +466,7 @@ fun TestLogin(navController: NavHostController) {
                     }
                 )
             }
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
 }
 
 @Composable

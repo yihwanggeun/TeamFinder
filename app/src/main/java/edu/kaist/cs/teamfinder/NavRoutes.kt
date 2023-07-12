@@ -1,8 +1,8 @@
-package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder
+package edu.kaist.cs.teamfinder
 
 object NavRoutes {
     val Home = Screen("home")
-    val Project = Screen("project")
+    val Feed = Screen("feed")
     val Add = Screen("add")
     val Chat = Screen("chat")
     val Saved = Screen("saved")

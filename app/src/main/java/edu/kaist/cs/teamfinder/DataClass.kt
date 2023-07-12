@@ -45,11 +45,28 @@ data class Project(
 
 
 data class Feed(
+    @SerializedName("posting_id")
+    val postId: Int,
+
+    @SerializedName("author")
     val name: String,
-    val imageResourceId: Int,
+
+    @SerializedName("posting_title")
     val title: String,
-    val note: String,
+
+    val imageResourceId: Int,
+
+    @SerializedName("posting_content")
+    val content: String,
+
     val date: String,
+
+    @SerializedName("posting_like")
     val like: Int,
-    val comment: Int
+
+    @SerializedName("posting_comment")
+    val comment: Int,
+
+    @SerializedName("posting_shared")
+    val shared: Int
 )

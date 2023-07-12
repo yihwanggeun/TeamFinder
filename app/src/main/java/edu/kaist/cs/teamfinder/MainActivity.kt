@@ -19,11 +19,8 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -36,11 +33,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.NavRoutes
 import edu.kaist.cs.teamfinder.screens.AddScreen
 import edu.kaist.cs.teamfinder.screens.ChatScreen
+import edu.kaist.cs.teamfinder.screens.FeedScreen
 import edu.kaist.cs.teamfinder.screens.HomeScreen
-import edu.kaist.cs.teamfinder.screens.ProjectScreen
 import edu.kaist.cs.teamfinder.screens.SavedScreen
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 
@@ -118,7 +114,7 @@ fun MainNavHost(
         startDestination = startDestination
     ) {
         composable(NavRoutes.Home.route) { HomeScreen() }
-        composable(NavRoutes.Project.route) { ProjectScreen() }
+        composable(NavRoutes.Feed.route) { FeedScreen() }
         composable(NavRoutes.Add.route) { AddScreen() }
         composable(NavRoutes.Chat.route) { ChatScreen() }
         composable(NavRoutes.Saved.route) { SavedScreen() }

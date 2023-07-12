@@ -1,4 +1,4 @@
-package edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens
+package edu.kaist.cs.teamfinder.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -44,11 +44,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
-import edu.kaist.cs.teamfinder.Engineer
-import edu.kaist.cs.teamfinder.Globals
 import edu.kaist.cs.teamfinder.Project
 import edu.kaist.cs.teamfinder.R
-import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.TopRateEngineer
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 
 
@@ -134,7 +131,7 @@ fun ProjectList(
                             color = Color(0xFFAFECFE),
                             shape = RoundedCornerShape(size = 6.dp)
                         )
-                        .clickable(){
+                        .clickable() {
                             onAppProjectClick()
                         }
                 ) {
@@ -182,7 +179,8 @@ fun ProjectList(
                             .background(
                                 color = Color(0xFFBEAFFE),
                                 shape = RoundedCornerShape(size = 6.dp)
-                            ).clickable{ onWebProjectClick()},
+                            )
+                            .clickable { onWebProjectClick() },
 
                         ) {
                         Column(
@@ -218,7 +216,8 @@ fun ProjectList(
                             .background(
                                 color = Color(0xFFFFD6AD),
                                 shape = RoundedCornerShape(size = 6.dp)
-                            ).clickable(){
+                            )
+                            .clickable() {
                                 onSoftwareProjectClick()
                             }
 

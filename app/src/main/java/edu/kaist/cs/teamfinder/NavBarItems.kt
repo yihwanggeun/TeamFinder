@@ -1,12 +1,5 @@
 package edu.kaist.cs.teamfinder
 
-import edu.kaist.cs.teamfinder.navbariconpack.Add
-import edu.kaist.cs.teamfinder.navbariconpack.Chat
-import edu.kaist.cs.teamfinder.navbariconpack.Connection
-import edu.kaist.cs.teamfinder.navbariconpack.Home
-import edu.kaist.cs.teamfinder.navbariconpack.NavBarIconPack
-import edu.kaist.cs.teamfinder.navbariconpack.Save
-
 object NavBarItems {
 
     val NavBarItems = listOf(
@@ -16,8 +9,8 @@ object NavBarItems {
             icon = R.drawable.home,
         ),
         NavBarItem(
-            name = "Project",
-            route = "project",
+            name = "Feed",
+            route = "feed",
             icon = R.drawable.connection,
         ),
         NavBarItem(

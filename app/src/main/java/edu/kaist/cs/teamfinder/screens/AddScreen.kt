@@ -14,20 +14,17 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontVariation.weight
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -39,11 +36,6 @@ import androidx.navigation.compose.rememberNavController
 import edu.kaist.cs.teamfinder.Globals
 import edu.kaist.cs.teamfinder.R
 import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.AddDescriptionScreen
-import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.ProjectDetailScreen
-import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.ProjectList
-import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.WebTypeScreen
-import edu.kaist.cs.teamfinder.navbariconpack.Add
-import edu.kaist.cs.teamfinder.navbariconpack.NavBarIconPack
 import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 
 @Composable
@@ -51,10 +43,11 @@ fun AddScreen() {
     val navController = rememberNavController()
     val context = LocalContext.current
     NavHost(navController, "AddScreen") {
-        composable("AddScreen") {
+        composable("AddScreen") { it ->
+            it.savedStateHandle
             AddScreenContent(navController)
         }
-        composable("AddFrontScreen"){
+        composable("AddFrontScreen") {
             AddFrontScreen(navController)
         }
         composable("AddBackScreen"){
@@ -123,7 +116,8 @@ fun AddScreenContent(navController: NavController){
                         painter = painterResource(id = R.drawable.addbutton),
                         contentDescription = "Web",
                         modifier = Modifier
-                            .size(24.dp).clickable {
+                            .size(24.dp)
+                            .clickable {
                                 Globals.project_type = "Web Project"
                                 navController.navigate("AddFrontScreen")
 
@@ -162,7 +156,8 @@ fun AddScreenContent(navController: NavController){
                         painter = painterResource(id = R.drawable.addbutton),
                         contentDescription = "Web",
                         modifier = Modifier
-                            .size(24.dp).clickable {
+                            .size(24.dp)
+                            .clickable {
                                 Globals.project_type = "App Project"
                                 navController.navigate("AddFrontScreen")
 

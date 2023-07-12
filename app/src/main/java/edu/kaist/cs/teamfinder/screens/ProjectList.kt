@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import edu.kaist.cs.teamfinder.Engineer
+import edu.kaist.cs.teamfinder.Globals
 import edu.kaist.cs.teamfinder.Project
 import edu.kaist.cs.teamfinder.R
 import edu.kaist.cs.teamfinder.edu.kaist.cs.teamfinder.screens.TopRateEngineer
@@ -55,7 +56,9 @@ import edu.kaist.cs.teamfinder.ui.theme.TeamFinderTheme
 fun ProjectList(
     projectList: List<Project>,
     onProjectListClick: (Project) -> Unit,
-    onWebProjectClick: ()-> Unit
+    onWebProjectClick: ()-> Unit,
+    onAppProjectClick: ()-> Unit,
+    onSoftwareProjectClick: ()-> Unit
 ) {
     val navController = rememberNavController()
     println(projectList)
@@ -76,34 +79,23 @@ fun ProjectList(
                         painter = painterResource(id = R.drawable.sample_image),
                         contentDescription = "Google logo",
                         modifier = Modifier
-                            .width(35.dp)
-                            .height(35.dp)
+                            .width(50.dp)
+                            .height(50.dp)
                     )
                 }
             }
             Text(
-                text = "Hello\nOrlando Diggs.",
+                text = "Hello,\n"+ Globals.globalUser+".",
                 style = TextStyle(
                     fontSize = 22.sp,
-                    lineHeight = 26.65.sp,
+                    lineHeight = 30.sp,
                     fontFamily = FontFamily(Font(R.font.dmsansbold)),
                     fontWeight = FontWeight(700),
                     color = Color(0xFF0D0140),
                 ),
                 modifier = Modifier.padding(start = 16.dp)
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "Most Popular Engineer",
-                style = TextStyle(
-                    fontSize = 10.sp,
-                    lineHeight = 10.sp,
-                    fontFamily = FontFamily(Font(R.font.dmsans)),
-                    fontWeight = FontWeight(300),
-                    color = Color(0xFF0D0140),
-                ),
-                modifier = Modifier.padding(start = 16.dp)
-            )
+
             Spacer(modifier = Modifier.height(8.dp))
             /*
             val engineerList = listOf(
@@ -142,6 +134,9 @@ fun ProjectList(
                             color = Color(0xFFAFECFE),
                             shape = RoundedCornerShape(size = 6.dp)
                         )
+                        .clickable(){
+                            onAppProjectClick()
+                        }
                 ) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -223,7 +218,9 @@ fun ProjectList(
                             .background(
                                 color = Color(0xFFFFD6AD),
                                 shape = RoundedCornerShape(size = 6.dp)
-                            )
+                            ).clickable(){
+                                onSoftwareProjectClick()
+                            }
 
                     ) {
                         Column(
@@ -288,8 +285,10 @@ fun ProjectList(
                                         .clip(CircleShape)
                                         .background(Color(0xFFF9F9F9))
                                 ) {
+                                    val image = getImageResourceForFront(project.front)
                                     Image(
-                                        painter = painterResource(id = R.drawable.react),
+
+                                        painter = painterResource(id = image),
                                         contentDescription = project.projectName,
                                         modifier = Modifier
                                             .size(48.dp) // 이미지 크기를 조절하십시오.
@@ -308,7 +307,7 @@ fun ProjectList(
                                             fontWeight = FontWeight(700),
                                             color = Color(0xFF150B3D),
                                         ),
-                                        modifier = Modifier.padding(start = 16.dp, top = 20.dp)
+                                        modifier = Modifier.padding(start = 16.dp, end = 16.dp,top = 20.dp)
                                     )
                                     Text(
                                         text = project.projectType,
@@ -500,6 +499,6 @@ fun ProjectView() {
         Project( "IoT Development", "IoT 개발 프로젝트...", "IoT 개발 경험자 우대...", "IoT Project", "이이", "Python", "Node.js", 6, 3)
             // 기타 기술자 추가
         )
-        ProjectList(projectList,onProjectListClick = {}, onWebProjectClick = {})
+        ProjectList(projectList,onProjectListClick = {}, onWebProjectClick = {}, onAppProjectClick = {}, onSoftwareProjectClick = {})
     }
 }

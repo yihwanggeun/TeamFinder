@@ -1,6 +1,7 @@
 package edu.kaist.cs.teamfinder.screens
 
 import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -54,6 +55,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 @Composable
 fun TypeProjectScreen(frame : String) {
+    println(frame)
     val projectList = remember { mutableStateListOf<Project>() }
     val context = LocalContext.current
     gettypeproject(projectList,context,frame)
@@ -101,7 +103,7 @@ fun TypeProjectScreen(frame : String) {
                                     fontWeight = FontWeight(700),
                                     color = Color(0xFF150B3D),
                                 ),
-                                modifier = Modifier.padding(start = 16.dp, top = 20.dp)
+                                modifier = Modifier.padding(start = 16.dp,end = 16.dp, top = 20.dp)
                             )
                             Text(
                                 text = project.projectType,
@@ -270,11 +272,11 @@ fun TypeProjectScreen(frame : String) {
 fun gettypeproject(projectList : MutableList<Project>, ctx : Context, frame : String){
     var gson = GsonBuilder().setLenient().create()
     val retrofit = Retrofit.Builder()
-        .baseUrl("https://75fb-192-249-19-234.ngrok-free.app/") // API의 베이스 URL을 설정합니다
+        .baseUrl("https://7349-192-249-19-234.ngrok-free.app/") // API의 베이스 URL을 설정합니다
         .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(gson)) // 문자열 응답을 처리하기 위해 ScalarsConverterFactory를 사용합니다
         .build()
-
+    Log.d("Get TEST",frame)
     val apiService = retrofit.create(ApiService::class.java)
     val call : Call<ArrayList<Project>> = apiService.typeproject(frame)
     call!!.enqueue(object : Callback<ArrayList<Project>?> {

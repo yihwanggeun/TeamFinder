@@ -15,8 +15,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -78,9 +80,11 @@ fun ProjectDetailScreen(projectName: String) {
 
         Log.i("TAG", detailproject[0].projectName)
         println(detailproject[0].projectRequire)
-        val parts = detailproject[0].projectRequire.split("\n")
+        val parts = detailproject[0].projectRequire.split(":")
 
-        val part1 = parts?.get(0)
+        val part1 = parts[0]
+        val part2 = parts[1]
+        val part3 = parts[2]
         println(detailproject[0].front)
         Box(modifier = Modifier.fillMaxSize().background(Color(0xFFF9F9F9))) {
 
@@ -88,7 +92,9 @@ fun ProjectDetailScreen(projectName: String) {
 
             //Spacer(modifier = Modifier.height(100.dp))
             // Box with background and Text
-            Column {
+            Column(modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .height(3000.dp)) {
                 Box(modifier = Modifier.padding(top = 70.dp)) {
 
                     Box(
@@ -169,11 +175,12 @@ fun ProjectDetailScreen(projectName: String) {
                             modifier = Modifier
                                 .size(80.dp) // Adjust the size of your image
                                 .clip(CircleShape)
-                                .background(Color(0xFFD6CDFE)),
+                                .background(Color(0xFFF9F9F9)),
                             contentAlignment = Center
                         ) {
+                            val imageResource = getImageResourceForFront(detailproject[0].front)
                             Image(
-                                painter = painterResource(id = R.drawable.apple),
+                                painter = painterResource(id = imageResource),
                                 contentDescription = "apple",
                                 modifier = Modifier
                                     .size(24.dp) // Adjust the size of your image
@@ -195,7 +202,7 @@ fun ProjectDetailScreen(projectName: String) {
                 )
 
                 Text(
-                    text = "이 프로젝트는 Chat GPT를 사용한 프로젝트입니다.\n그냥 스케쥴링 어플에서 존재했던 비효율성을 해결하기 위해 만들어진 도구로 Chat GPT를 사용합니다.\n AI 시대가 도래하면서 도구적 존재가 무시하기 힘들 정도로 바뀌었습니다.",
+                    text = detailproject[0].projectDescription,
                     modifier = Modifier.padding(16.dp),
                     style = TextStyle(
                         fontSize = 12.sp,
@@ -227,7 +234,7 @@ fun ProjectDetailScreen(projectName: String) {
                     )
                 )
                 Text(
-                    text = "·" + part1,
+                    text = "· " + part2,
                     modifier = Modifier.padding(16.dp),
                     style = TextStyle(
                         fontSize = 12.sp,
@@ -237,7 +244,7 @@ fun ProjectDetailScreen(projectName: String) {
                     )
                 )
                 Text(
-                    text = "·" + part1,
+                    text = "· " + part3,
                     modifier = Modifier.padding(16.dp),
                     style = TextStyle(
                         fontSize = 12.sp,
@@ -282,12 +289,12 @@ fun getdetailproject(projectName : String, ctx : Context, projectList : MutableL
     println(projectName)
     var gson = GsonBuilder().setLenient().create()
     val retrofit = Retrofit.Builder()
-        .baseUrl("https://75fb-192-249-19-234.ngrok-free.app/") // API의 베이스 URL을 설정합니다
+        .baseUrl("https://7349-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
         .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(gson)) // 문자열 응답을 처리하기 위해 ScalarsConverterFactory를 사용합니다
         .build()
     val apiService = retrofit.create(ApiService::class.java)
-    val call : Call<ArrayList<Project>> = apiService.detailproject("Schedule App Using Chat GPT to Improve")
+    val call : Call<ArrayList<Project>> = apiService.detailproject(projectName)
     call!!.enqueue(object : Callback<ArrayList<Project>?> {
         override fun onResponse(
             call: Call<ArrayList<Project>?>,
@@ -317,6 +324,14 @@ fun getdetailproject(projectName : String, ctx : Context, projectList : MutableL
             println("FAIL")
         }
     })
+}
+fun getImageResourceForFront(front: String): Int {
+    return when (front) {
+        "Vue.js" -> R.drawable.vue
+        "JavaScript" -> R.drawable.javascript
+        "React" -> R.drawable.react
+        else -> R.drawable.react// default image for unexpected cases
+    }
 }
 @Preview
 @Composable

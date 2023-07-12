@@ -92,7 +92,7 @@ lateinit var mGoogleSignInClient: GoogleSignInClient
 lateinit var resultLauncher : ActivityResultLauncher<Intent>
 var gson = GsonBuilder().setLenient().create()
 val retrofit = Retrofit.Builder()
-    .baseUrl("https://0e69-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
+    .baseUrl("https://7349-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
     .addConverterFactory(ScalarsConverterFactory.create())
     .addConverterFactory(GsonConverterFactory.create(gson)) // 문자열 응답을 처리하기 위해 ScalarsConverterFactory를 사용합니다
     .build()
@@ -134,9 +134,9 @@ class LoginActivity : ComponentActivity() {
                         composable(route = LoginRoute.Home.name) {
                             HomeScreen()
                         }
-//                        composable(route = LoginRoute.MainScreen.name) {
-//                            MainScreen()
-//                        }
+                        composable(route = LoginRoute.MainScreen.name) {
+                            MainScreen()
+                        }
                     }
                 }
             }
@@ -190,7 +190,7 @@ fun TestLogin(navController: NavHostController) {
                     .fillMaxWidth()
             )
             Text(
-                text = "Lorem ipsum dolor sit amet, consectetur adipiscing\nelit, sed do eiusmod tempor",
+                text = "Find the project team you desire, and unfold your future\nWe, TeamFinder, will assist you.",
                 style = TextStyle(
                     fontSize = 12.sp,
                     lineHeight = 19.2.sp,
@@ -539,7 +539,7 @@ fun Login(name: String, modifier: Modifier = Modifier, navController: NavHostCon
                 horizontalArrangement = Arrangement.Start
             ) {
                 Text(
-                    text = "Explore all the most exciting job roles based\non your interest and study major.",
+                    text = "Explore all the most exciting project roles\nbased on your interest and study major.",
                     fontSize = 15.sp,
                     color = Color(0xFF524B6B),
                     lineHeight = 18.sp
@@ -738,10 +738,11 @@ fun CreateAccount(modifier: Modifier = Modifier, navController: NavHostControlle
                     val familyName = null
                     val givenName = null
                     val displayName = fullname
-                    val photoUrl = null
+                    val photoUrl = R.drawable.sample.toString()
                     val password = password
                     val userData : User = User(email,password, displayName,photoUrl)
-                    //navController.navigate(LoginScreen.CreateAccount.name)
+                    Globals.globalUser = fullname
+                    navController.navigate(LoginRoute.MainScreen.name)
                     apiService.createUser(userData).enqueue(object : Callback<String> {
                         override fun onResponse(call: Call<String>, response: Response<String>) {
                             if (response.isSuccessful) {

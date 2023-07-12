@@ -101,11 +101,20 @@ fun HomeScreen() {
                 },
                 onWebProjectClick = {
                     navController.navigate("webTypeScreen")
+                },
+                onAppProjectClick = {
+                    navController.navigate("appTypeScreen")
+                },
+                onSoftwareProjectClick = {
+                    navController.navigate("softwareTypeScreen")
                 }
+            
             )
         }
         composable("projectDetail") { ProjectDetailScreen(projectName) }
         composable("webTypeScreen") { WebTypeScreen(navController) }
+        composable("appTypeScreen") { AppTypeScreen(navController) }
+        composable("softwareTypeScreen") { SoftwareTypeScreen(navController) }
         composable("typeProject/{frame}") { backStackEntry ->
             val frame = backStackEntry.arguments?.getString("frame")
             if (frame != null) {
@@ -121,7 +130,7 @@ fun HomeScreen() {
 fun getallproject(projectList : MutableList<Project>,ctx : Context){
     var gson = GsonBuilder().setLenient().create()
     val retrofit = Retrofit.Builder()
-        .baseUrl("https://75fb-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
+        .baseUrl("https://7349-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
         .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(gson)) // 문자열 응답을 처리하기 위해 ScalarsConverterFactory를 사용합니다
         .build()

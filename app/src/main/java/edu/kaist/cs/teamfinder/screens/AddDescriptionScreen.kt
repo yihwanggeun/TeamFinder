@@ -285,7 +285,7 @@ fun AddDescriptionScreen() {
                                 letterSpacing = 10.sp,
                             ),
                             modifier = Modifier.clickable {
-                               val project = Project(project_name, project_description,"1",
+                               val project = Project(project_name, project_description,"4년제 대학교 졸업자 우대:React Native 개발 경험 1년 이상 개발자 우대:회사 인턴 1년 이상 진행한 개발자 우대",
                                Globals.project_type,Globals.globalUser,Globals.front,Globals.back,4,0)
                                 println(project)
                                 createproject(project,context)
@@ -304,7 +304,7 @@ fun AddDescriptionScreen() {
 fun createproject(project : Project,ctx : Context){
     var gson = GsonBuilder().setLenient().create()
     val retrofit = Retrofit.Builder()
-        .baseUrl("https://75fb-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
+        .baseUrl("https://7349-192-249-19-234.ngrok-free.app") // API의 베이스 URL을 설정합니다
         .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(gson)) // 문자열 응답을 처리하기 위해 ScalarsConverterFactory를 사용합니다
         .build()

@@ -37,8 +37,8 @@ class ChatActivity : ComponentActivity() {
 
         // 3 - Authenticate and connect the user
         val user = User(
-            id = "test",
-            name = "test",
+            id = "michaeljackson",
+            name = "michaeljackson",
             image = "https://bit.ly/2TIt8NR"
         )
 

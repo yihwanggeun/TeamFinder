@@ -76,7 +76,8 @@ ___
 
 ###
 
-- ![Stream.IO](https://getstream.io/chat/sdk/compose/)의 Jetpack Compose Chat Messaging SDK를 이용하여 구현했습니다. 
+- ![Stream.IO](https://getstream.io/chat/sdk/compose/)의 Jetpack Compose Chat Messaging SDK를 이용하여 구현했습니다.
+- -StreamChatInitializer 로 앱 시작시 채팅에 연결하여 로딩없이 채팅목록을 불러올 수 있습니다.
 
 ---
 

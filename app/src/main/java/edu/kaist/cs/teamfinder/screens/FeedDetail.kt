@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -90,7 +91,7 @@ fun FeedDetail(feedNum: Int) {
                                 modifier = Modifier.padding(start = 16.dp, top = 16.dp)
                             )
                             Text(
-                                text = it[0].date,
+                                text = it[0].date ?: "00",
                                 style = TextStyle(
                                     fontSize = 12.sp,
                                     fontFamily = FontFamily(Font(R.font.dmsans)),
@@ -139,43 +140,13 @@ fun FeedDetail(feedNum: Int) {
                             .background(color = Color(0xFFD6CDFE))
 
                     ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Image(
-                                painter = painterResource(id = R.drawable.like),
-                                contentDescription = "like",
-                                modifier = Modifier
-                                    .padding(start = 16.dp, top = 16.dp)
-                                    .size(18.dp) // 이미지 크기를 조절하십시오.
-
-                            )
-                            Text(
-                                text = it[0].like.toString(),
-                                style = TextStyle(
-                                    fontSize = 10.sp,
-                                    fontFamily = FontFamily(Font(R.font.dmsans)),
-                                    fontWeight = FontWeight(400),
-                                    color = Color(0xFF6F6B80),
-                                ),
-                                modifier = Modifier.padding(start = 4.dp, top = 16.dp)
-                            )
-                            Image(
-                                painter = painterResource(id = R.drawable.comment),
-                                contentDescription = "like",
-                                modifier = Modifier
-                                    .padding(start = 16.dp, top = 16.dp)
-                                    .size(18.dp) // 이미지 크기를 조절하십시오.
-
-                            )
-                            Text(
-                                text = it[0].comment.toString(),
-                                style = TextStyle(
-                                    fontSize = 10.sp,
-                                    fontFamily = FontFamily(Font(R.font.dmsans)),
-                                    fontWeight = FontWeight(400),
-                                    color = Color(0xFF6F6B80),
-                                ),
-                                modifier = Modifier.padding(start = 4.dp, top = 16.dp)
-                            )
+                        // 댓글
+                        Column(
+                            verticalArrangement = Arrangement.SpaceEvenly,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(text = "하나")
+                            Text(text = "둘")
                         }
                     }
                 }

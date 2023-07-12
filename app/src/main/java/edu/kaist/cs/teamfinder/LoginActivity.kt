@@ -132,9 +132,9 @@ class LoginActivity : ComponentActivity() {
                         composable(route = LoginRoute.Home.name) {
                             HomeScreen()
                         }
-//                        composable(route = LoginRoute.MainScreen.name) {
-//                            MainScreen()
-//                        }
+                        composable(route = LoginRoute.MainScreen.name) {
+                            MainScreen()
+                        }
                     }
                 }
             }

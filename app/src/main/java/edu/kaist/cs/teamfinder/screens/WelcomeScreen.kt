@@ -32,7 +32,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import edu.kaist.cs.teamfinder.R
 
-//import androidx.compose.runtime.rememberCoroutineScope
 
 @Composable
 fun WelcomeScreen(onContinueClick: () -> Unit) {
@@ -50,24 +49,24 @@ fun WelcomeScreen(onContinueClick: () -> Unit) {
                         ),
                         textAlign = TextAlign.End,
                         modifier = Modifier
-                                .padding(end = 32.dp)
-                                .padding(top = 51.dp)
-                                .shadow(elevation = 15.dp)
+                            .padding(end = 32.dp)
+                            .padding(top = 51.dp)
+                            .shadow(elevation = 15.dp)
                     )
                 }
             }
             Row(
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 50.dp), horizontalArrangement = Arrangement.Center
+                    .fillMaxWidth()
+                    .padding(top = 50.dp), horizontalArrangement = Arrangement.Center
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.login1),
                     contentDescription = "",
                     modifier = Modifier
-                            .padding(0.dp)
-                            .width(280.dp)
-                            .height(270.dp)
+                        .padding(0.dp)
+                        .width(280.dp)
+                        .height(270.dp)
                 )
             }
             Row(
@@ -102,12 +101,12 @@ fun WelcomeScreen(onContinueClick: () -> Unit) {
             }
             Row(
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 16.dp, top = 10.dp),
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, top = 10.dp),
                 horizontalArrangement = Arrangement.Start
             ) {
                 Text(
-                    text = "Explore all the most exciting job roles based\non your interest and study major.",
+                    text = "Explore all the most exciting projects based\non your interest and study major.",
                     fontSize = 15.sp,
                     color = Color(0xFF524B6B),
                     lineHeight = 18.sp
@@ -115,8 +114,8 @@ fun WelcomeScreen(onContinueClick: () -> Unit) {
             }
             Row(
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(end = 24.dp, bottom = 16.dp),
+                    .fillMaxWidth()
+                    .padding(end = 24.dp, bottom = 16.dp),
                 horizontalArrangement = Arrangement.End
             ) {
 //            val coroutineScope = rememberCoroutineScope()
@@ -125,9 +124,9 @@ fun WelcomeScreen(onContinueClick: () -> Unit) {
                         painter = painterResource(id = R.drawable.login2),
                         contentDescription = "",
                         modifier = Modifier
-                                .padding(0.dp)
-                                .width(50.dp)
-                                .height(50.dp)
+                            .padding(0.dp)
+                            .width(50.dp)
+                            .height(50.dp)
                     )
                 }
             }

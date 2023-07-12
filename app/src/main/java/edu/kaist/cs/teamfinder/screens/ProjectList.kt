@@ -78,7 +78,8 @@ fun ProjectList(
                         contentDescription = "Google logo",
                         modifier = Modifier
                             .width(50.dp)
-                            .height(50.dp).clip(CircleShape)
+                            .height(50.dp)
+                            .clip(CircleShape)
                     )
                 }
             }
@@ -112,7 +113,7 @@ fun ProjectList(
 
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Find Your Job",
+                text = "Find Your Project",
                 modifier = Modifier.padding(start = 16.dp),
                 style = TextStyle(
                     fontSize = 16.sp,
@@ -122,7 +123,7 @@ fun ProjectList(
             )
             Spacer(modifier = Modifier.height(16.dp))
 
-            Row() {
+            Row {
                 Box(
                     modifier = Modifier
                         .width(150.dp)
@@ -132,7 +133,7 @@ fun ProjectList(
                             color = Color(0xFFAFECFE),
                             shape = RoundedCornerShape(size = 6.dp)
                         )
-                        .clickable() {
+                        .clickable {
                             onAppProjectClick()
                         }
                 ) {
@@ -218,7 +219,7 @@ fun ProjectList(
                                 color = Color(0xFFFFD6AD),
                                 shape = RoundedCornerShape(size = 6.dp)
                             )
-                            .clickable() {
+                            .clickable {
                                 onSoftwareProjectClick()
                             }
 
@@ -255,7 +256,7 @@ fun ProjectList(
 
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Recently Project List",
+                text = "Recently Updated Project List",
                 modifier = Modifier.padding(start = 16.dp),
                 style = TextStyle(
                     fontSize = 16.sp,
@@ -276,7 +277,7 @@ fun ProjectList(
                             .height(IntrinsicSize.Min),
 
                         ) {
-                        Column() {
+                        Column {
                             Row(modifier = Modifier.fillMaxWidth()) {
                                 Box(
                                     modifier = Modifier

@@ -66,26 +66,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun MainNavigation(
-    navController: NavHostController
-) {
-    val auth = false
-    val initialRoute =
-        if (auth) {
-            RootScreen.Home.route
-        } else {
-            RootScreen.Login.route
-        }
-
-    NavHost(
-        navController = navController,
-        startDestination = initialRoute
-    ) {
-
-    }
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {

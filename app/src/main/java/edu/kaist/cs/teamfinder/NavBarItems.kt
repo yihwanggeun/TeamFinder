@@ -1,5 +1,7 @@
 package edu.kaist.cs.teamfinder
 
+import edu.kaist.cs.teamfinder.navigation.NavBarItem
+
 object NavBarItems {
 
     val NavBarItems = listOf(
